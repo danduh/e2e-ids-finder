@@ -59,8 +59,6 @@ function showE2Areas() {
         console.warn(`[E2E HELPER] no elements with ${e2eAttr} attribute was found!!!`);
         return
     }
-    console.log(elements);
-
     elements.forEach((elem) => {
         elem.style.border = defaultStyle;
         elem.onmouseenter = highLiteElem.bind(null, elem);
@@ -75,7 +73,6 @@ function clearE2Areas() {
         console.warn(`[E2E HELPER] no elements with ${e2eAttr} attribute was found!!!`);
         return
     }
-    console.log(elements);
     elements.forEach((elem) => {
         elem.style.border = 'initial';
         elem.onmouseenter = null;
