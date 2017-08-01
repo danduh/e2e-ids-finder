@@ -1,5 +1,9 @@
 # E2E Test Helper :-)
 
+This extension not gonna solve all problems, but might help to developers to find not covered CTA buttons.
+
+And help to QA automation to see E2E id's values for new CTAs, without digging into the code.
+
 
 ### How to install
 
