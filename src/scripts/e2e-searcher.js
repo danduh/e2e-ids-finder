@@ -1,9 +1,10 @@
 var defaultStyle = '2px solid #000';
 var hoveredStyle = '3px solid red';
-var e2eAttr = "e2e-id";
+var defaultE2EAttr = "e2e_id";
+var e2eAttr = defaultE2EAttr;
 
 chrome.storage.sync.get({
-    attributeId: 'e2e-id'
+    attributeId: defaultE2EAttr
 }, function (items) {
     e2eAttr = items.attributeId;
     console.log(`[E2E HELPER] ${e2eAttr} attribute will be used`);
@@ -58,11 +59,12 @@ function showE2Areas() {
         console.warn(`[E2E HELPER] no elements with ${e2eAttr} attribute was found!!!`);
         return
     }
+    console.log(elements);
 
     elements.forEach((elem) => {
         elem.style.border = defaultStyle;
-        elem.addEventListener("mouseenter", highLiteElem.bind(null, elem));
-        elem.addEventListener("mouseout", unHighLiteElem.bind(null, elem));
+        elem.onmouseenter = highLiteElem.bind(null, elem);
+        elem.onmouseout = unHighLiteElem.bind(null, elem);
     });
 }
 
@@ -73,11 +75,11 @@ function clearE2Areas() {
         console.warn(`[E2E HELPER] no elements with ${e2eAttr} attribute was found!!!`);
         return
     }
-
+    console.log(elements);
     elements.forEach((elem) => {
         elem.style.border = 'initial';
-        elem.removeEventListener("mouseenter", highLiteElem);
-        elem.removeEventListener("mouseout", unHighLiteElem);
+        elem.onmouseenter = null;
+        elem.onmouseout = null;
     });
 
     let marker = document.getElementById('e2e-searcher-helper');

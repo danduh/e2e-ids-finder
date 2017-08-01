@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
-  "name": "e2e-ids-finder",
-  "description": "This ectension shows e2e ids, and will suggest to add e2e ids to other elements",
+  "name": "E2E Test Helper :-)",
+  "description": "This ectension shows e2e ids, and will suggest (in near future) to add e2e ids to other elements",
   "version": "0.1",
   "browser_action": {
     "default_icon": "src/assets/icon.png",
