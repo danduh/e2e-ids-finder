@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "version": "0.1",
+  "version": "0.1.1",
   "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
   "name": "E2E Test Helper :-)",
   "description": "This extension shows e2e ids, and will suggest (in near future) to add e2e ids to other elements",
