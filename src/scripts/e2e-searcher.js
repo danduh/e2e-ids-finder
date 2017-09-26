@@ -1,5 +1,5 @@
 var defaultStyle = '2px solid #000';
-var hoveredStyle = '3px solid red';
+var hoveredStyle = '2px solid red';
 var defaultE2EAttr = "e2e_id";
 var e2eAttr = defaultE2EAttr;
 
@@ -34,6 +34,7 @@ function addMarker(elem) {
     marker.style.left = _position.x + 'px';
     marker.style.background = 'grey';
     marker.style.color = '#FFF';
+    marker.style.fontSize = '12px';
     marker.style.padding = '5px';
     marker.textContent = elem.getAttribute(e2eAttr);
 
