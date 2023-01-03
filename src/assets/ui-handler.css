@@ -1,0 +1,16 @@
+.e2e-helper-hover {
+  border: 2px solid #000 !important;
+}
+
+.e2e-helper-hover:hover {
+  border: 2px solid #ff0000 !important;
+}
+
+#e2e-searcher-helper {
+  position: fixed;
+  z-index: 100000;
+  background: gray;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 5px;
+}

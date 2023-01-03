@@ -1,5 +1,13 @@
 import { Component } from "@angular/core";
 
+function test(e2eAttr: string){
+  const elements = document.querySelectorAll(`[${ e2eAttr }]`);
+  console.log(elements)
+  elements.forEach((elem: any) => {
+    elem.style.border = "2px solid #000";
+  });
+}
+
 @Component({
   standalone: true,
   selector: "app-actions",
@@ -36,7 +44,6 @@ export class ActionsComponent {
         // @ts-ignore
         clearE2Areas()
       },
-      // files: [ "/assets/scripts/e2e-cleaner.js" ]
     });
   }
 }

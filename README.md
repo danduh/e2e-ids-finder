@@ -1,33 +1,31 @@
 # E2E Test Helper :-)
 
-This extension not gonna solve all problems, but might help to developers to find not covered CTA buttons.
+A helpful tool for locating UI elements for Cypress, Playwright, Selenium, Squish and other UI Test Tools
 
-And help to QA automation to see E2E id's values for new CTAs, without digging into the code.
+This extension comes to improve the experience of UI Test development.
+
+While developing E2E tests (aka UI tests with Cypress, Playwright, Selenium, Squish and others), a developer can simply see the elements on the page and selectors for these elements.
+
+### How to use
+
+* Navigate to the page you are interested in checking (for example [my page](https://danduh.me))
+* Click on the extension icon ![alt text](src/assets/icon-32.png "Extension Icon")
+* Click on **Show elements with E2E**
+* Hover with the mouse over selected elements.
+* To clean all, - Click on the extension icon ![alt text](src/assets/icon-32.png "Extension Icon"), then click on **Hide**
+
+### Change e2e ID
+>By default, the extension will search for elements with the attribute "e2e-id", but you can change it.
+
+* Click on the extension icon ![alt text](src/assets/icon-32.png "Extension Icon")
+* Click on the **Settings** tab
+* Type the attribute name you wish  -> **Save**
 
 
 ### How to install
-
 * [download relaese](https://github.com/danduh/e2e-ids-finder/releases)
 * unpack
 * in Chrome navigate to [chrome://extensions](chrome://extensions)
 * Click on **Load unpacked extension**
-
-
-### How to use
-
-* Navigate to page you interested to check (for example [Compit's login page](https://app.compit.com))
-* Click on extension icon ![alt text](src/assets/icon-32.png "Extension Icon")
-* Click on **Show elements with E2E**
-* Hover with mouse over selected elements.
-* If you on Compit's login page, open side menu (hamburger icon top-left)
-* To clean all, - Click on extension icon ![alt text](src/assets/icon-32.png "Extension Icon"), then click on **Hide**
-
-### Change e2e ID
-
-* In Chrome navigate to [chrome://extensions](chrome://extensions), find **E2E Test Helper :-)** extension
-* Click on **Options** -> type attribute name you wish (try 'e2e-id' instead 'e2e_id')  -> **Save** --> Go Back to page
-* If you on Compit's login page, open side menu (hamburger icon top-left)
-* Click on extension icon ![alt text](src/assets/icon-32.png "Extension Icon")
-* Click on **Show elements with E2E**
 
 That's it... Any suggestions are welcome :)

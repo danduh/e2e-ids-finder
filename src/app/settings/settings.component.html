@@ -1,4 +1,10 @@
 <div class="tab">
-  <input type="text" [formControl]="e2eIdInput"/>
-  <button (click)="saveE2e()">Update</button>
+  <div class="form-inline">
+    <label for="e2e">Set E2E Attribute => [a-Z,0-9,-,_]</label>
+    <input type="text" [formControl]="e2eIdInput" id="e2e" placeholder="Enter E2E Attribute">
+    <button class="btn default" (click)="saveE2e()">Update</button>
+  </div>
+  <div class="code">
+    <pre>{{elemExample | async}}</pre>
+  </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AsyncPipe } from "@angular/common";
 
 @Component({
   standalone: true,
@@ -7,15 +8,23 @@ import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
   templateUrl: "./settings.component.html",
   imports: [
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AsyncPipe
   ],
   styleUrls: [ "./settings.component.scss" ]
 })
 export class SettingsComponent implements OnInit {
-  public e2eIdInput!: FormControl;
+  public e2eIdInput: FormControl = new FormControl("s");
+  public e2eAttrDef = "e2e-id";
+  public elemExample = this.buildExample`<button ${ this.e2eAttrDef }="myLoginBtn"> \n Login \n</button>`
+
+  async buildExample(strings: TemplateStringsArray, e2eAttr: string){
+    e2eAttr = await this.loadE2eId() || e2eAttr;
+    return `${ strings[0] }${ e2eAttr }${ strings[1] }`
+  }
 
   async ngOnInit(){
-    this.e2eIdInput = new FormControl(await this.loadE2eId());
+    this.e2eIdInput.setValue(await this.loadE2eId())
   }
 
   async saveE2e(){
@@ -23,9 +32,8 @@ export class SettingsComponent implements OnInit {
     await chrome.storage.sync.set({
       attributeId: e2eAttr
     })
-      .then((res) => {
-        console.log(res)
-      })
+
+    this.elemExample = this.buildExample`<button ${ e2eAttr }="myLoginBtn"> \n Login \n</button>`
   }
 
   async loadE2eId(){

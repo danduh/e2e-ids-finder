@@ -2,23 +2,17 @@
   "manifest_version": 3,
   "version": "1.0.0",
   "name": "E2E Test Helper :-)",
-  "description": "This extension shows e2e ids, and will suggest (in near future) to add e2e ids to other elements",
+  "description": "A helpful tool for locating UI elements for Cypress, Playwright, Selenium, Squish and other UI Test Tools",
+  "author": "Daniel Ostrovsky",
   "action": {
     "default_popup": "index.html"
-  },
-  "background": {
-    "service_worker": "background.js",
-    "type": "module"
   },
   "icons": {
     "48": "assets/icon-32.png",
     "128": "assets/icon.png"
   },
   "permissions": [
-    "contextMenus",
-    "notifications",
     "declarativeContent",
-    "tabs",
     "scripting",
     "activeTab",
     "storage"

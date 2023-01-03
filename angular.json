@@ -52,11 +52,20 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "none"
+              "outputHashing": "none",
+              "optimization": {
+                "styles": {
+                  "inlineCritical": false
+                }
+              }
             },
             "development": {
               "buildOptimizer": false,
-              "optimization": false,
+              "optimization": {
+                "styles": {
+                  "inlineCritical": false
+                }
+              },
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,

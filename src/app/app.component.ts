@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { RouterLink, RouterOutlet } from "@angular/router";
+import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 @Component({
   standalone: true,
@@ -8,13 +8,12 @@ import { RouterLink, RouterOutlet } from "@angular/router";
   imports: [
     RouterOutlet,
     RouterLink,
+    RouterLinkActive,
   ],
   styleUrls: [ "./app.component.scss" ]
 })
 export class AppComponent implements OnInit {
   title = "@danduh/e2e-test-helper";
-  e2eAttr = "ke2e"
-  defaultStyle = "2px solid #000";
 
   async getTabId(){
     return await chrome.tabs.query({currentWindow: true, active: true})
@@ -24,12 +23,28 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit(){
-    chrome.scripting.executeScript({
-      target: {
-        tabId: await this.getTabId()
-      },
-      files: [ "/assets/ui-handler.js" ]
-    });
+    const tabId = await this.getTabId()
+    const resp = await chrome.tabs.sendMessage(tabId, {text: "isUiHandlerInjected"})
+      .catch((err) => {
+        // For us, it indicates that no script was injected yet.
+        // console.warn(err)
+        return {}
+      });
 
+    if (resp.status !== true) {
+      await chrome.scripting.executeScript({
+        target: {
+          tabId
+        },
+        files: [ "/assets/ui-handler.js" ]
+      });
+
+      await chrome.scripting.insertCSS({
+        target: {
+          tabId
+        },
+        files: [ "/assets/ui-handler.css" ]
+      });
+    }
   }
 }
