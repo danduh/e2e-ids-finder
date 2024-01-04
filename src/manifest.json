@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "version": "2.0.0",
   "name": "E2E Test Helper :-)",
-  "description": "A helpful tool for locating UI elements for Cypress, Playwright, Selenium, Squish and other UI Test Tools. Now supports Shadow Dom too!",
+  "description": "A helpful tool for locating UI elements for Cypress, Playwright, Selenium, Squish and other UI Test Tools. Supports Shadow DOM",
   "author": "Daniel Ostrovsky",
   "action": {
     "default_popup": "index.html"
