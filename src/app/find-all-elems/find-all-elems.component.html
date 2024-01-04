@@ -1,0 +1,38 @@
+<div class="tab">
+    <!-- <div class="controller">
+        <button class="block  btn default" (click)="findAllElements()">Scan</button>
+        <div class="total-number" *ngIf="allElementsArray">
+            <span>Found: {{allElementsArray.length}} Elements</span>
+        </div>
+    </div>
+
+    <div class="controller">
+        <button class="block  btn default" (click)="toggleHtml()">Show HTML</button>
+        <textarea class="textarea" rows="10" cols="50" [(ngModel)]="allElements" *ngIf="showHtml"></textarea>
+    </div>
+    <div class="controller">
+        <button class="block  btn default" (click)="askForPageObject()">Ask for Page Object</button>
+    </div>
+    <div class="controller">
+        <button class="block  btn default" (click)="toggleCustomProm()">Ask With Custom Prompt</button>
+        <div *ngIf="showCustomProm">
+            <input class="textarea" type="text" [(ngModel)]="poClassName" placeholder="Set PO ClassName" />
+
+            <textarea class="textarea" rows="10" cols="50" [(ngModel)]="customPrompt"></textarea>
+            <button class="block  btn default" (click)="askWithCustomProm()">Send Custom Request</button>
+        </div>
+    </div> -->
+    <div class="controller">
+        <button class="btn btn-primary" (click)="fullScan()">Analyze</button>
+    </div>
+
+    <div class="controller" *ngIf="!pageObject && modelAsked">
+        <h1>Waitin for response from AI</h1>
+    </div>
+
+    <div class="controller" *ngIf="pageObject">
+        <span prism language="typescript" [content]="pageObject" class="preview ghcolors">
+        </span>
+    </div>
+
+</div>

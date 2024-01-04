@@ -1,0 +1,4 @@
+<ng-container *ngFor="let segment of segments">
+    <app-snippet *ngIf="isCodeSegment(segment)" [code]="segment"></app-snippet>
+    <p *ngIf="!isCodeSegment(segment)">{{ segment }}</p>
+</ng-container>

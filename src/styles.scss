@@ -1,40 +1,15 @@
+// @import "~prismjs/themes/prism-ghcolors.css";
+@import "./prismjs-theme.css";
+@import "~@def/clr-ui/clr-ui.css";
+
+button:focus {
+  outline: none;
+  outline: none;
+}
+
 body {
-  background: black;
-  color: #e2e2e2;
+  // background: #F4F4F4;
   margin: 0;
 }
 
-a {
-  text-decoration: none !important;
-  color: #e2e2e2 !important;
-}
 
-// Buttons
-.block {
-  display: block;
-  width: 100%;
-  border: none;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.btn {
-  border: 2px solid black;
-  background-color: transparent;
-  color: #e2e2e2;
-  padding: 14px 28px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Gray */
-.default {
-  border-color: #e7e7e7;
-  color: #e2e2e2;
-}
-
-.default:hover {
-  background: #313131;
-}

@@ -1,7 +1,16 @@
+<clr-tabs>
+  <clr-tab>
+    <button clrTabLink  routerLink="/allElements" routerLinkActive="active">Scan Page (AI)</button>
+  </clr-tab>
+  <clr-tab>
+    <button clrTabLink routerLink="/actions" routerLinkActive="active">Action</button>
+  </clr-tab>
+</clr-tabs>
 <div class="main-wrapper">
-  <div class="tab">
+  <!-- <div class="tab">
+    <button class="tablinks" routerLink="/allElements" routerLinkActive="active">Find All (beta)</button>
     <button class="tablinks" routerLink="/actions" routerLinkActive="active">Action</button>
     <button class="tablinks" routerLink="/settings" routerLinkActive="active">Settings</button>
-  </div>
+  </div> -->
   <router-outlet></router-outlet>
 </div>

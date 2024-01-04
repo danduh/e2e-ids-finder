@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
+import { ClarityModule } from "@def/clr-angular";
+import { TabsModule } from '@def/ui/components/tabs';
+
 
 @Component({
   standalone: true,
@@ -9,6 +12,8 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
+    TabsModule,
+    ClarityModule,
   ],
   styleUrls: [ "./app.component.scss" ]
 })
