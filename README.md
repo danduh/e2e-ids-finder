@@ -15,14 +15,15 @@ While developing E2E tests (aka UI tests with Cypress, Playwright, Selenium, Squ
 * To clean all, - Click on the extension icon ![alt text](src/assets/icon-32.png "Extension Icon"), then click on **Hide**
 
 ### Change e2e ID
+>
 >By default, the extension will search for elements with the attribute "e2e-id", but you can change it.
 
 * Click on the extension icon ![alt text](src/assets/icon-32.png "Extension Icon")
 * Click on the **Settings** tab
 * Type the attribute name you wish  -> **Save**
 
-
 ### How to install
+
 * [download relaese](https://github.com/danduh/e2e-ids-finder/releases)
 * unpack
 * in Chrome navigate to [chrome://extensions](chrome://extensions)

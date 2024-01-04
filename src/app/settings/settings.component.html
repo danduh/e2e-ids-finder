@@ -2,6 +2,12 @@
   <div class="form-inline">
     <label for="e2e">Set E2E Attribute => [a-Z,0-9,-,_]</label>
     <input type="text" [formControl]="e2eIdInput" id="e2e" placeholder="Enter E2E Attribute">
+  </div>
+  <div class="form-inline">
+    <label for="shadow">Include Shadow Dom (beta)</label>
+    <input type="checkbox" [formControl]="includeShadowDom" id="shadow">
+  </div>
+  <div class="form-inline">
     <button class="btn default" (click)="saveE2e()">Update</button>
   </div>
   <div class="code">
