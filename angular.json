@@ -78,10 +78,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "@danduh/e2e-test-helper:build:production"
+              "buildTarget": "@danduh/e2e-test-helper:build:production"
             },
             "development": {
-              "browserTarget": "@danduh/e2e-test-helper:build:development"
+              "buildTarget": "@danduh/e2e-test-helper:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,7 +89,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "@danduh/e2e-test-helper:build"
+            "buildTarget": "@danduh/e2e-test-helper:build"
           }
         },
         "test": {
@@ -113,5 +113,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

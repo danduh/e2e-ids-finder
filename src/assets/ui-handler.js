@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
   if (msg.text === 'isUiHandlerInjected') {
-    sendResponse({status: true});
+    sendResponse({ status: true });
   }
 });
 
@@ -15,9 +15,20 @@ const loadE2eId = async () => {
     });
 }
 
+const loadUseShadowDom = async () => {
+  return await chrome.storage.sync
+    .get({
+      includeShadowDom: false,
+    })
+    .then((resp) => {
+      return resp["includeShadowDom"];
+    });
+}
+
+
 function getAbsPosition(element) {
   let rect = element.getBoundingClientRect();
-  return {x: rect.left, y: rect.top}
+  return { x: rect.left, y: rect.top }
 }
 
 function addMarker(elem, e2eAttr) {
@@ -52,30 +63,55 @@ const highLiteElem = function (elem, e2eAttr, event) {
   addMarker(elem, e2eAttr);
 };
 
+
+const querySelectorAllWithShadow = (selector, root = document) => {
+  let elements = [];
+
+  // Search in the current root
+  elements.push(...root.querySelectorAll(selector));
+
+  // Search in Shadow DOMs
+  root.querySelectorAll('*').forEach(el => {
+    if (el.shadowRoot) {
+      elements.push(...querySelectorAllWithShadow(selector, el.shadowRoot));
+    }
+  });
+
+  return elements;
+}
+
+const defaultStyle = "2px solid #000";
+
 const showE2Areas = async () => {
   const e2eAttr = await loadE2eId()
+  const useShadowDom = await loadUseShadowDom();
   console.log(`[E2E HELPER] show elements with ${e2eAttr} attribute`);
-  let elements = document.querySelectorAll(`[${e2eAttr}]`);
+  let elements = !useShadowDom ? document.querySelectorAll(`[${e2eAttr}]`) : querySelectorAllWithShadow(`[${e2eAttr}]`);
+
   if (elements.length === 0) {
     console.warn(`[E2E HELPER] no elements with ${e2eAttr} attribute was found!!!`);
     return
   }
   elements.forEach((elem) => {
     elem.classList.add('e2e-helper-hover')
+    elem.style.border = defaultStyle;
     elem.onmouseenter = highLiteElem.bind(null, elem, e2eAttr);
   });
 }
 
 const clearE2Areas = async () => {
   const e2eAttr = await loadE2eId()
+  const useShadowDom = await loadUseShadowDom();
   console.log(`[E2E HELPER] clear elements with ${e2eAttr} attribute`);
-  let elements = document.querySelectorAll(`[${e2eAttr}]`);
+  let elements = !useShadowDom ? document.querySelectorAll(`[${e2eAttr}]`) : querySelectorAllWithShadow(`[${e2eAttr}]`);
+
   if (elements.length === 0) {
     console.warn(`[E2E HELPER] no elements with ${e2eAttr} attribute was found!!!`);
     return
   }
   elements.forEach((elem) => {
     elem.classList.remove('e2e-helper-hover')
+    elem.style.border = "none";
     elem.onmouseenter = null;
     elem.onmouseout = null;
   });
