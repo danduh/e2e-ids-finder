@@ -17,3 +17,10 @@ export class BaseChromeClass {
       });
   }
 }
+
+
+export interface LocalData{
+  attributeId?: string;
+  openAIKey?:string;
+  includeShadowDom?:boolean;
+}

@@ -1,5 +1,5 @@
-<div>
-    <button class="btn btn-secondary" (click)="copyToClipboard()">Copy to Clipboard</button>
-    <button class="btn btn-secondary" (click)="saveToFile()">Save to File</button>
+<div class="actions">
+    <dds-button size="mini" class="btn btn-secondary" (click)="copyToClipboard()">Copy to Clipboard</dds-button>
+    <dds-button size="mini" class="btn btn-secondary" (click)="saveToFile()">Save to File</dds-button>
 </div>
 <pre><code [innerHtml]="highlightedCode"></code></pre>

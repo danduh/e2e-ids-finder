@@ -9,14 +9,14 @@ import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-scss";
 import { importProvidersFrom } from "@angular/core";
-import { TabsModule } from '@def/ui/components/tabs';
+import { DDSAngularModule } from "@dds/angular";
 
 bootstrapApplication(AppComponent, {
-  
+
   providers: [
-    importProvidersFrom([TabsModule]),
+    importProvidersFrom([DDSAngularModule]),
     provideRouter([
-      { path: "", redirectTo: "actions", pathMatch: "full" },
+      { path: "", redirectTo: "allElements", pathMatch: "full" },
       { path: "settings", component: SettingsComponent },
       { path: "actions", component: ActionsComponent },
       { path: "allElements", component: FindAllElemsComponent },

@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import OpenAI from "openai";
 
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
-import { ChatRequestMessage } from "@azure/openai/types/openai";
-import { promptV1, promptV2 } from "./prompts";
+import { promptV1 } from "./prompts";
 import { ChatCompletionMessageParam } from "openai/resources";
+import {LocalData} from "./shared/base-chrome-class";
 
 const OpenAIUrlDell = "https://openai.aiaccel.dell.com";
 const OpenAIUrlOriginal = "https://api.openai.com/v1/chat/completions";
@@ -28,13 +28,19 @@ const sleep = (delay: number) =>
 @Injectable()
 export class OpenAiService {
   openai!: OpenAI;
+  localData!: LocalData;
   constructor() {
+    this.initService()
+  }
+
+  async initService() {
+    this.localData = await chrome.storage.sync.get()
+
     this.openai = new OpenAI({
-      apiKey: "",
+      apiKey: this.localData.openAIKey,
       dangerouslyAllowBrowser: true,
     });
   }
-
   async askGpt(
     elemsString: string,
     e2eAttr: string,
@@ -43,8 +49,9 @@ export class OpenAiService {
   ) {
     const t = await this.openai.chat.completions
       .create({
-        model: "ft:gpt-3.5-turbo-0125:personal::97MnyRIb",
-        messages: promptV2({
+        // model: "ft:gpt-3.5-turbo-0125:personal::97MnyRIb",
+        model: "gpt-4-turbo",
+        messages: promptV1({
           e2eAttr,
           elemsString,
           customPrompt,
@@ -56,63 +63,5 @@ export class OpenAiService {
 
     console.warn(t.choices[0].message.content);
     return t.choices[0].message.content;
-
-    const response = await fetch(OpenAIUrlOriginal, {
-      method: "POST",
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-        "Api-Key": KEY_Or,
-      },
-      body: JSON.stringify({
-        model: "ft:gpt-3.5-turbo-0125:personal::974IHhzM",
-        messages: promptV2({
-          e2eAttr,
-          elemsString,
-          customPrompt,
-          poClassName: "SomePageObject",
-        }),
-      }),
-    });
-
-    if (!response.ok) {
-      if (response.status === 401) {
-        // Unauthorized - Incorrect API key
-        throw new Error(
-          "Looks like your API key is incorrect. Please check your API key and try again."
-        );
-      } else {
-        throw new Error(`Failed to fetch. Status code: ${response.status}`);
-      }
-    }
-
-    const responseData = await response.json();
-    return responseData.choices[0].message.content;
-  }
-
-  async _askGpt(
-    elemsString: string,
-    e2eAttr: string,
-    customPrompt = "",
-    poClassName = "SomePageObject"
-  ) {
-    // await sleep(10000);
-    // return CONTEXT.content;
-
-    const deploymentId = "gpt-4-turbo";
-    const messages = promptV2({
-      e2eAttr,
-      elemsString,
-      customPrompt,
-      poClassName,
-    });
-
-    const response = await client.getChatCompletions(deploymentId, messages, {
-      temperature: 0.1,
-    });
-
-    console.warn(response);
-
-    return response.choices[0].message?.content || "";
   }
 }

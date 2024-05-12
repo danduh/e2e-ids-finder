@@ -34,7 +34,12 @@
               "src/manifest.json"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/@dds/angular/styles/dds-reboot.css",
+              "node_modules/@dds/angular/styles/dds-fonts.css",
+              "node_modules/@dds/angular/styles/dds-icons.css",
+              "node_modules/@dds/angular/styles/dds-main.css"
+
             ],
             "scripts": []
           },

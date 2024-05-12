@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { BaseChromeClass } from "../shared/base-chrome-class";
-import { ClarityModule } from '@def/clr-angular';
-import { DefSegmentedButtonType, DefSegmentedButtonsModule } from '@def/ui/components/segmented-buttons';
+
 import { CommonModule } from "@angular/common";
+import {DDSAngularModule} from "@dds/angular";
 
 function test(e2eAttr: string) {
   const elements = document.querySelectorAll(`[${e2eAttr}]`);
@@ -16,7 +16,7 @@ function test(e2eAttr: string) {
   standalone: true,
   selector: "app-actions",
   templateUrl: "./actions.component.html",
-  imports: [CommonModule, ClarityModule,DefSegmentedButtonsModule],
+  imports: [CommonModule, DDSAngularModule],
   styleUrls: ["./actions.component.scss"],
 })
 export class ActionsComponent extends BaseChromeClass {

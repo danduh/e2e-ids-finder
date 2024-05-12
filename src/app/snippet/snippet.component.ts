@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as Prism from "prismjs";
+import { DDSAngularModule } from "@dds/angular";
 
 @Component({
   selector: "app-snippet",
   standalone: true,
-  imports: [],
+  imports: [
+    DDSAngularModule
+  ],
   templateUrl: "./snippet.component.html",
   styleUrl: "./snippet.component.scss",
 })
@@ -25,13 +28,9 @@ export class SnippetComponent implements OnInit {
     );
   }
 
-  copyToClipboard() {
-    const el = document.createElement("textarea");
-    el.value = this.cleanCode;
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand("copy");
-    document.body.removeChild(el);
+  async copyToClipboard() {
+    const clipBoard = navigator.clipboard;
+    await clipBoard.writeText(this.cleanCode);
   }
 
   saveToFile() {

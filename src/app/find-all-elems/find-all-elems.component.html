@@ -1,38 +1,58 @@
-<div class="tab">
-    <!-- <div class="controller">
-        <button class="block  btn default" (click)="findAllElements()">Scan</button>
-        <div class="total-number" *ngIf="allElementsArray">
-            <span>Found: {{allElementsArray.length}} Elements</span>
-        </div>
+<div class="dds__container dds__container--compact dds__mt-4">
+  <div class="dds__row dds__mt-4">
+    <div class="dds__col-1">
+      <dds-button size="sm" class="block  btn default" (click)="findAllElements()">Scan</dds-button>
+    </div>
+    <div class="dds__col-1">
+      <span *ngIf="allElementsArray">Found: {{ allElementsArray.length }} Elements</span>
+    </div>
+  </div>
+
+  <div class="dds__row dds__mt-4">
+    <div class="dds__col-1">
+      <dds-button size="sm" class="block  btn default" (click)="toggleHtml()">Show HTML</dds-button>
+    </div>
+    <div class="dds__col-1">
+      <span>You can see scanned HTML</span>
     </div>
 
-    <div class="controller">
-        <button class="block  btn default" (click)="toggleHtml()">Show HTML</button>
-        <textarea class="textarea" rows="10" cols="50" [(ngModel)]="allElements" *ngIf="showHtml"></textarea>
+  </div>
+  <div class="dds__row dds__mt-4" *ngIf="showHtml">
+    <div class="dds__col-2">
+      <dds-textarea class="textarea" [rows]=10 [cols]=50 [(ngModel)]="allElements"></dds-textarea>
     </div>
-    <div class="controller">
-        <button class="block  btn default" (click)="askForPageObject()">Ask for Page Object</button>
+  </div>
+  <!--  <div class="dds__row">-->
+  <!--    <dds-button size="sm" class="block  btn default" (click)="askForPageObject()">Ask for Page Object</dds-button>-->
+  <!--    <dds-button size="sm" class="block  btn default" (click)="toggleCustomProm()">Ask With Custom Prompt</dds-button>-->
+  <!--  </div>-->
+  <div class="dds__row dds__mt-4">
+    <div class="dds__col-2">
+      <dds-label visual-indicator="on">Give a name to PageObject</dds-label>
+      <dds-input size="sm" type="text" [required]=true [(ngModel)]="poClassName"/>
+      <small class="dds__input-text__helper">
+        <dds-helper>TS Style ClassName</dds-helper>
+      </small>
     </div>
-    <div class="controller">
-        <button class="block  btn default" (click)="toggleCustomProm()">Ask With Custom Prompt</button>
-        <div *ngIf="showCustomProm">
-            <input class="textarea" type="text" [(ngModel)]="poClassName" placeholder="Set PO ClassName" />
+  </div>
+  <div class="dds__row dds__mt-4">
+    <div class="dds__col-2">
+      <dds-label visual-indicator="on">Provide more details if needed</dds-label>
+      <dds-textarea [rows]=5 [cols]=50 [(ngModel)]="customPrompt"></dds-textarea>
+    </div>
+  </div>
+  <div class="dds__row dds__mt-4">
+    <div class="dds__col-2">
+      <dds-button size="sm" class="block  btn default" (click)="askWithCustomProm()">Send Request</dds-button>
+    </div>
+  </div>
+  <div class="controller" *ngIf="!pageObject && modelAsked">
+    <h1>Waiting for response from AI</h1>
+  </div>
 
-            <textarea class="textarea" rows="10" cols="50" [(ngModel)]="customPrompt"></textarea>
-            <button class="block  btn default" (click)="askWithCustomProm()">Send Custom Request</button>
-        </div>
-    </div> -->
-    <div class="controller">
-        <button class="btn btn-primary" (click)="fullScan()">Analyze</button>
-    </div>
-
-    <div class="controller" *ngIf="!pageObject && modelAsked">
-        <h1>Waitin for response from AI</h1>
-    </div>
-
-    <div class="controller" *ngIf="pageObject">
-        <span prism language="typescript" [content]="pageObject" class="preview ghcolors">
-        </span>
-    </div>
+  <div class="dds__row dds__mt-4" *ngIf="pageObject">
+      <div prism language="typescript" [content]="pageObject" class="preview ghcolors prism-holder">
+      </div>
+  </div>
 
 </div>
