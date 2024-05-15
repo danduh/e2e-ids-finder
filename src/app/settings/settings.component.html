@@ -1,24 +1,38 @@
 <div class="dds__container dds__container--compact">
   <fieldset class="dds__form__section">
     <div class="dds__form__field">
-      <dds-input [required]="true" [formControl]="e2eIdInput">
+      <dds-input size="sm" [required]="true" [formControl]="e2eIdInput">
         <dds-label visual-indicator="on">Set E2E Attribute => [a-Z,0-9,-,_]</dds-label>
         <dds-helper>Enter E2E Attribute Name</dds-helper>
       </dds-input>
     </div>
     <div class="dds__form__field">
-      <dds-checkbox [formControl]="includeShadowDom">
+      <dds-checkbox size="sm" [formControl]="includeShadowDom">
         <dds-label visual-indicator="on">Include Shadow Dom (beta)</dds-label>
       </dds-checkbox>
     </div>
     <div class="dds__form__field">
-      <dds-input-password [formControl]="openAIKey">
+      <dds-select size="sm" [formControl]="instanceType">
+        <dds-label visual-indicator="on">Select AI Instance</dds-label>
+        <dds-helper>Select what instance you want to interact with</dds-helper>
+        <option value="AzureAI">AzureAI</option>
+        <option value="OpenAI">OpenAI</option>
+      </dds-select>      
+    </div>
+    <div class="dds__form__field">
+      <dds-input-password size="sm" [formControl]="openAIKey">
         <dds-label visual-indicator="on">OpenAI API Key</dds-label>
       </dds-input-password>
     </div>
+    <div class="dds__form__field">
+      <dds-input size="sm" [formControl]="modelName">
+        <dds-label visual-indicator="on">Model Name <small>gpt-4-turbo / gpt-4o</small></dds-label>
+      </dds-input>
+    </div>
+    
   </fieldset>
   <div class="dds__form__field">
-    <dds-button class="btn default" (click)="saveE2e()">Save</dds-button>
+    <dds-button size="sm" class="btn default" (click)="saveE2e()">Save</dds-button>
   </div>
   <div class="dds__row dds__mt-4">
     <div class="dds__col-2 dds__col--sm dds__mb-3">

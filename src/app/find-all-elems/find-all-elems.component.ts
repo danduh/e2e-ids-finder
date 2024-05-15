@@ -66,7 +66,7 @@ export class FindAllElemsComponent extends BaseChromeClass {
   async askWithCustomProm() {
     const e2eAttr = await this.loadE2eId();
 
-    this.pageObject = await this.openAiService.askGpt(
+    this.pageObject = await this.openAiService.askAI()(
       this.allElements,
       e2eAttr,
       this.customPrompt,
