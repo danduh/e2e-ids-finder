@@ -1,16 +1,28 @@
-<div class="tab">
-  <div class="form-inline">
-    <label for="e2e">Set E2E Attribute => [a-Z,0-9,-,_]</label>
-    <input type="text" [formControl]="e2eIdInput" id="e2e" placeholder="Enter E2E Attribute">
+<div class="dds__container dds__container--compact">
+  <fieldset class="dds__form__section">
+    <div class="dds__form__field">
+      <dds-input [required]="true" [formControl]="e2eIdInput">
+        <dds-label visual-indicator="on">Set E2E Attribute => [a-Z,0-9,-,_]</dds-label>
+        <dds-helper>Enter E2E Attribute Name</dds-helper>
+      </dds-input>
+    </div>
+    <div class="dds__form__field">
+      <dds-checkbox [formControl]="includeShadowDom">
+        <dds-label visual-indicator="on">Include Shadow Dom (beta)</dds-label>
+      </dds-checkbox>
+    </div>
+    <div class="dds__form__field">
+      <dds-input-password [formControl]="openAIKey">
+        <dds-label visual-indicator="on">OpenAI API Key</dds-label>
+      </dds-input-password>
+    </div>
+  </fieldset>
+  <div class="dds__form__field">
+    <dds-button class="btn default" (click)="saveE2e()">Save</dds-button>
   </div>
-  <div class="form-inline">
-    <label for="shadow">Include Shadow Dom (beta)</label>
-    <input type="checkbox" [formControl]="includeShadowDom" id="shadow">
-  </div>
-  <div class="form-inline">
-    <button class="btn default" (click)="saveE2e()">Update</button>
-  </div>
-  <div class="code">
-    <pre>{{elemExample | async}}</pre>
+  <div class="dds__row dds__mt-4">
+    <div class="dds__col-2 dds__col--sm dds__mb-3">
+      <pre>{{ elemExample | async }}</pre>
+    </div>
   </div>
 </div>

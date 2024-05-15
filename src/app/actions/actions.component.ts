@@ -1,8 +1,12 @@
 import { Component } from "@angular/core";
+import { BaseChromeClass } from "../shared/base-chrome-class";
 
-function test(e2eAttr: string){
-  const elements = document.querySelectorAll(`[${ e2eAttr }]`);
-  console.log(elements)
+import { CommonModule } from "@angular/common";
+import {DDSAngularModule} from "@dds/angular";
+
+function test(e2eAttr: string) {
+  const elements = document.querySelectorAll(`[${e2eAttr}]`);
+  console.log(elements);
   elements.forEach((elem: any) => {
     elem.style.border = "2px solid #000";
   });
@@ -12,37 +16,31 @@ function test(e2eAttr: string){
   standalone: true,
   selector: "app-actions",
   templateUrl: "./actions.component.html",
-  styleUrls: [ "./actions.component.scss" ]
+  imports: [CommonModule, DDSAngularModule],
+  styleUrls: ["./actions.component.scss"],
 })
-export class ActionsComponent {
-  async getTabId(){
-    return await chrome.tabs.query({currentWindow: true, active: true})
-      .then((tabs) => {
-        return tabs[0].id || 0
-      });
-  }
-
-  async showElements(){
+export class ActionsComponent extends BaseChromeClass {
+  async showElements() {
     chrome.scripting.executeScript({
       target: {
-        tabId: await this.getTabId()
+        tabId: await this.getTabId(),
       },
       func: () => {
         // @ts-ignore
-        showE2Areas()
+        showE2Areas();
       },
       // files: [ "/assets/scripts/e2e-searcher.js" ]
     });
   }
 
-  async hideElements(){
+  async hideElements() {
     chrome.scripting.executeScript({
       target: {
-        tabId: await this.getTabId()
+        tabId: await this.getTabId(),
       },
       func: () => {
         // @ts-ignore
-        clearE2Areas()
+        clearE2Areas();
       },
     });
   }

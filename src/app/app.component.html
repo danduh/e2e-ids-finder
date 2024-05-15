@@ -1,7 +1,16 @@
+<dds-tabs>
+  <dds-tabs-header #tabsHeader>
+    <dds-tab-label routerLink="/allElements">
+        Use AI (beta)
+    </dds-tab-label>
+    <dds-tab-label routerLink="/actions">
+        Actions
+    </dds-tab-label>
+    <dds-tab-label routerLink="/settings">
+      Settings
+    </dds-tab-label>
+  </dds-tabs-header>
+</dds-tabs>
 <div class="main-wrapper">
-  <div class="tab">
-    <button class="tablinks" routerLink="/actions" routerLinkActive="active">Action</button>
-    <button class="tablinks" routerLink="/settings" routerLinkActive="active">Settings</button>
-  </div>
   <router-outlet></router-outlet>
 </div>

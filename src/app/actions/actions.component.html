@@ -1,8 +1,10 @@
-<div class="tab">
-  <div class="controller">
-    <button class="block btn default" (click)="showElements()">Show elements with E2E</button>
-  </div>
-  <div class="controller">
-    <button class="block  btn default" (click)="hideElements()">Hide</button>
+<div class="dds__container dds__container--compact dds__mt-4">
+  <div class="dds__row">
+    <div class="dds__col-1 dds__col--sm-3 dds__col--md-6 dds__mb-3 dds__justify-content-center">
+      <dds-button  (click)="showElements()">Show</dds-button>
+    </div>
+    <div class="dds__col-1 dds__col--sm-3 dds__col--md-6 dds__mb-3 dds__justify-content-center">
+      <dds-button (click)="hideElements()">Hide</dds-button>
+    </div>
   </div>
 </div>
