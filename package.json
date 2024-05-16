@@ -2,7 +2,6 @@
   "name": "@danduh/e2e-test-helper",
   "version": "3.0.0",
   "scripts": {
-    "ai": "ts-node ./src/openai/gpt.ts",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
