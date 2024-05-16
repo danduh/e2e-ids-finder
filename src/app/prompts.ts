@@ -5,10 +5,11 @@ export interface PromptData {
   poClassName: string;
 }
 
-const systemMsg = (e2eAttr: string)=>`You are an expert in creating a Page Object for Cypress UI Tests (TypeScript), based on provided elements in string.
-You know that the best option to find elements (to create selectors) is to use the attribute, "${e2eAttr}".
-If you see actionable elements such as buttons, links, inputs, without "${e2eAttr}" attribute you will add this elements as well.
-When you see multiple elements with the same value in "${e2eAttr}" attribute, you will create selector that return list of all elements, and method that will allow select specific element by text.
+const systemMsg = (e2eAttr: string)=>`You are an expert in creating a Page Object for Cypress UI Tests (TypeScript), based on provided elements in INPUT section. \n
+You know that the best option to find elements (to create selectors) is to use the attribute, "${e2eAttr}" \n.
+If you see actionable elements such as buttons, links, inputs, without "${e2eAttr}" attribute you will create selectors for this elements as well as for the elements with "${e2eAttr}" attribute. \n
+If you see elements with tag <edf-button> or <button> you will create selectors for this elements too. \n
+When you see multiple elements with the same value in "${e2eAttr}" attribute, you will create selector that return list of all elements, and method that will allow select specific element by text. \n
 Your responses are in TypeScript only, without natural language.`
 
 export const promptV1 = ({
@@ -26,11 +27,11 @@ export const promptV1 = ({
   return [
     {
       role: "system",
-      content: systemMsg(e2eAttr)
+      content: systemMsg(e2eAttr) + customPrompt
     },
     {
       role: "user",
-      content: `${elemsString} \n ${customPrompt}`,
+      content: `Create Page Object class with name ${poClassName}. \n INPUT: ${elemsString}`,
     },
   ];
 };

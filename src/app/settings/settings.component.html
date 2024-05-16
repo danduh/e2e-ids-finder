@@ -20,6 +20,11 @@
       </dds-select>      
     </div>
     <div class="dds__form__field">
+      <dds-input size="sm" [formControl]="apiEndPoint">
+        <dds-label visual-indicator="on">AI EndPoint <small>for on-prem Azure only</small></dds-label>
+      </dds-input>
+    </div>
+    <div class="dds__form__field">
       <dds-input-password size="sm" [formControl]="openAIKey">
         <dds-label visual-indicator="on">OpenAI API Key</dds-label>
       </dds-input-password>

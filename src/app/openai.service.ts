@@ -6,19 +6,6 @@ import { promptV1 } from "./prompts";
 import { ChatCompletionMessageParam } from "openai/resources";
 import {LocalData} from "./shared/base-chrome-class";
 
-const OpenAIUrlDell = "https://openai.aiaccel.dell.com";
-const OpenAIUrlOriginal = "https://api.openai.com/v1/chat/completions";
-const KEY_Or = "OPEN_AI_KEY";
-const KEY_Dell = "DELL_KEY";
-
-const client = new OpenAIClient(
-  OpenAIUrlDell,
-  new AzureKeyCredential(KEY_Dell)
-);
-
-
-
-
 @Injectable()
 export class OpenAiService {
   openai!: OpenAI;
@@ -39,7 +26,7 @@ export class OpenAiService {
     });
 
     this.azureAI = new OpenAIClient(
-      OpenAIUrlDell,
+      this.localData.apiEndPoint as string,
       new AzureKeyCredential(this.localData.openAIKey as string)
     );
   }
@@ -62,7 +49,7 @@ export class OpenAiService {
     customPrompt = "",
     poClassName = "SomePageObject"    
   ) => {
-    const deploymentId = "gpt-4-turbo";
+    const deploymentId = this.localData.modelName as string;
     const messages = promptV1({
       e2eAttr,
       elemsString,
@@ -79,9 +66,6 @@ export class OpenAiService {
     return response.choices[0].message?.content || "";
   }
 
-
-
-
   askGpt = async (
     elemsString: string,
     e2eAttr: string,
@@ -90,18 +74,18 @@ export class OpenAiService {
   ) => {
     const t = await this.openai.chat.completions
       .create({
-        model: "gpt-4-turbo",
+        model: this.localData.modelName as string,
+        temperature: 0.1,
         messages: promptV1({
           e2eAttr,
           elemsString,
           customPrompt,
-          poClassName: "SomePageObject",
+          poClassName,
         }) as unknown as Array<ChatCompletionMessageParam>,
       })
       .asResponse()
       .then((r) => r.json());
 
-    console.warn(t.choices[0].message.content);
     return t.choices[0].message.content;
   }
 }

@@ -17,6 +17,7 @@ export class SettingsComponent implements OnInit {
   public openAIKey: FormControl = new FormControl('');
   public instanceType: FormControl = new FormControl('');
   public modelName: FormControl = new FormControl('gpt-4-turbo');
+  public apiEndPoint: FormControl = new FormControl('');
 
   public e2eAttrDef = "e2e-id";
   public elemExample = this
@@ -36,6 +37,7 @@ export class SettingsComponent implements OnInit {
     this.includeShadowDom.setValue(localData.includeShadowDom);
     this.instanceType.setValue(localData.instanceType);
     this.modelName.setValue(localData.modelName);
+    this.apiEndPoint.setValue(localData.apiEndPoint);
   }
 
   async saveE2e() {
@@ -44,12 +46,14 @@ export class SettingsComponent implements OnInit {
     const openAIKey = this.openAIKey.getRawValue();
     const instanceType = this.instanceType.getRawValue();
     const modelName = this.modelName.getRawValue();
+    const apiEndPoint = this.apiEndPoint.getRawValue();
     await chrome.storage.sync.set({
       attributeId: e2eAttr,
       includeShadowDom,
       openAIKey,
       instanceType,
-      modelName
+      modelName,
+      apiEndPoint
     });
 
     console.log('saved', {
@@ -71,7 +75,8 @@ export class SettingsComponent implements OnInit {
         openAIKey: "openAIKey",
         includeShadowDom: false,
         instanceType: "",
-        modelName: ""
+        modelName: "",
+        apiEndPoint:""
       })
       .then((resp) => {
         return resp;

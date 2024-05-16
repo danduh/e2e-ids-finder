@@ -24,4 +24,5 @@ export interface LocalData{
   includeShadowDom?:boolean;
   instanceType?:string;
   modelName?:string;
+  apiEndPoint?:string;
 }
