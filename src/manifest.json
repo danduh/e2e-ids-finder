@@ -8,14 +8,14 @@
     "default_popup": "index.html"
   },
   "icons": {
-    "48": "assets/icon-32.png",
-    "128": "assets/icon.png"
+    "16": "assets/icon16.png",
+    "32": "assets/icon32.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
   },
   "permissions": [
-    "declarativeContent",
     "scripting",
     "activeTab",
-    "storage",
-    "tabs"
+    "storage"
   ]
 }
