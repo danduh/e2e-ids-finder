@@ -6,18 +6,6 @@ import { CodeHolderComponent } from "../code-holder/code-holder.component";
 import { CommonModule } from "@angular/common";
 import {ButtonModule, DDSAngularModule} from "@dds/angular";
 
-const content =
-    "```typescript\n FAKE CONTENT```";
-
-
-const getContent = (): Promise<string>=>{
-  return new Promise((resolve) => {
-    setTimeout(() => {
-    resolve(content);
-    }, 2500)
-  })
-}
-
 @Component({
   selector: "app-find-all-elems",
   standalone: true,
