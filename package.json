@@ -19,11 +19,12 @@
     "@angular/platform-browser-dynamic": "^17.0.8",
     "@angular/router": "^17.0.8",
     "@azure/openai": "^1.0.0-beta.12",
-    "@dds/angular": "^2.19.0",
+    "@dds/angular": "^2.21.0",
     "openai": "^4.24.1",
     "prismjs": "^1.29.0",
     "rxjs": "7.4.0",
     "tslib": "^2.3.0",
+    "uuid": "^10.0.0",
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "@types/chrome": "^0.0.206",
     "@types/jasmine": "~4.3.0",
     "@types/prismjs": "^1.26.3",
+    "@types/uuid": "^9.0.8",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",

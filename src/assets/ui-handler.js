@@ -5,14 +5,18 @@ chrome.runtime.onMessage.addListener(function (msg, sender, sendResponse) {
 });
 
 const defaultE2EAttr = "e2e-id";
+const CONFIGURATION_KEY = 'localConfiguration';
 
 const loadE2eId = async () => {
-  return await chrome.storage.sync.get({
-    attributeId: defaultE2EAttr
-  })
-    .then((resp) => {
-      return resp["attributeId"]
+  console.log('DDD')
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get([CONFIGURATION_KEY], (result) => {
+      if (chrome.runtime.lastError) {
+        return reject(chrome.runtime.lastError);
+      }
+      resolve(result[CONFIGURATION_KEY].attributeId || defaultE2EAttr);
     });
+  });
 }
 
 const loadUseShadowDom = async () => {
@@ -138,7 +142,7 @@ function extractHTML(node) {
 const showE2Areas = async () => {
   const e2eAttr = await loadE2eId()
   const useShadowDom = await loadUseShadowDom();
-  console.log(`[E2E HELPER] show elements with ${e2eAttr} attribute`);
+  console.warn(`[E2E HELPER] show elements with ${e2eAttr} attribute`);
   let elements = !useShadowDom ? document.querySelectorAll(`[${e2eAttr}]`) : querySelectorAllWithShadow(`[${e2eAttr}]`);
 
   if (elements.length === 0) {

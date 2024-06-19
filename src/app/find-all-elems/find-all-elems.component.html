@@ -1,7 +1,8 @@
 <div class="dds__container dds__container--compact dds__mt-4">
+
   <div class="dds__row dds__mt-4">
     <div class="dds__col-1">
-      <dds-button size="sm" class="block  btn default" (click)="findAllElements()">Scan</dds-button>
+      <dds-button size="mini" class="block  btn default" (click)="findAllElements()">Scan</dds-button>
     </div>
     <div class="dds__col-1">
       <span *ngIf="allElementsArray">Found: {{ allElementsArray.length }} Elements</span>
@@ -10,49 +11,63 @@
 
   <div class="dds__row dds__mt-4">
     <div class="dds__col-1">
-      <dds-button size="sm" class="block  btn default" (click)="toggleHtml()">Show HTML</dds-button>
+      <dds-button size="mini" class="block  btn default" (click)="toggleHtml()">Show HTML</dds-button>
     </div>
     <div class="dds__col-1">
       <span>You can see scanned HTML</span>
     </div>
-
   </div>
+
   <div class="dds__row dds__mt-4" *ngIf="showHtml">
     <div class="dds__col-2">
       <dds-textarea class="textarea" [rows]=10 [cols]=50 [(ngModel)]="allElements"></dds-textarea>
     </div>
   </div>
-  <!--  <div class="dds__row">-->
-  <!--    <dds-button size="sm" class="block  btn default" (click)="askForPageObject()">Ask for Page Object</dds-button>-->
-  <!--    <dds-button size="sm" class="block  btn default" (click)="toggleCustomProm()">Ask With Custom Prompt</dds-button>-->
-  <!--  </div>-->
-  <div class="dds__row dds__mt-4">
-    <div class="dds__col-2">
-      <dds-label visual-indicator="on">Give a name to PageObject</dds-label>
-      <dds-input size="sm" type="text" [required]=true [(ngModel)]="poClassName"/>
-      <small class="dds__input-text__helper">
-        <dds-helper>TS Style ClassName</dds-helper>
-      </small>
-    </div>
-  </div>
-  <div class="dds__row dds__mt-4">
-    <div class="dds__col-2">
-      <dds-label visual-indicator="on">Provide more details if needed</dds-label>
-      <dds-textarea [rows]=5 [cols]=50 [(ngModel)]="customPrompt"></dds-textarea>
-    </div>
-  </div>
-  <div class="dds__row dds__mt-4">
-    <div class="dds__col-2">
-      <dds-button size="sm" class="block  btn default" (click)="askWithCustomProm()">Send Request</dds-button>
-    </div>
-  </div>
-  <div class="controller" *ngIf="!pageObject && modelAsked">
-    <h1>Waiting for response from AI</h1>
-  </div>
 
-  <div class="dds__row dds__mt-4" *ngIf="pageObject">
+  <form [formGroup]="requestForm" (ngSubmit)="sendRequest()">
+    <fieldset class="dds__mb-4">
+      <div class="dds__row dds__mt-4">
+        <div class="dds__col-2">
+          <dds-input size="sm" type="text" [required]=true formControlName="pageObjectName">
+            <dds-label>Give a name to PageObject</dds-label>
+            <small class="dds__input-text__helper">
+              <dds-helper>TS Style ClassName</dds-helper>
+            </small>
+          </dds-input>
+        </div>
+      </div>
+
+      <dds-select size="sm" placeholder="Select an option" formControlName="systemMessage">
+        <dds-label>Select System Message</dds-label>
+        <dds-helper>Define your assistant</dds-helper>
+        <option *ngFor="let message of systemMessages | async" [value]="message.content">{{ message.title }}</option>
+      </dds-select>
+      <dds-select size="sm" placeholder="Select an option" formControlName="userPrompt">
+        <dds-label>Select User Prompt</dds-label>
+        <dds-helper>Give more context, be specific</dds-helper>
+        <option *ngFor="let message of userPrompts | async" [value]="message.content">{{ message.title }}</option>
+      </dds-select>
+      <div class="dds__row dds__mt-4">
+        <div class="dds__col-2">
+          <dds-label visual-indicator="on">Provide more details if needed</dds-label>
+          <dds-textarea [rows]=5 [cols]=50 formControlName="customPrompt"></dds-textarea>
+        </div>
+      </div>
+      <div class="dds__row dds__mt-4">
+        <div class="dds__col-2">
+          <dds-button size="mini" type="submit" class="block  btn default">Send Request</dds-button>
+        </div>
+      </div>
+      <div class="controller" *ngIf="!pageObject && modelAsked">
+        <h1>Waiting for response from AI</h1>
+      </div>
+    </fieldset>
+    <div class="dds__row dds__mt-4" *ngIf="pageObject">
       <div prism language="typescript" [content]="pageObject" class="preview ghcolors prism-holder">
       </div>
-  </div>
-
+    </div>
+  </form>
+  <dds-overlay [visible]="loaderVisible" aria-live="polite">
+    <dds-loading-indicator [elevation]="true" size="md">Waiting for AI</dds-loading-indicator>
+  </dds-overlay>
 </div>

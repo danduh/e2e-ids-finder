@@ -4,7 +4,7 @@ const defaultE2EAttr = "e2e_id";
 let e2eAttr = defaultE2EAttr;
 
 function showE2Areas() {
-  console.log(`[E2E HELPER] show elements with ${e2eAttr} attribute`);
+  console.log(`[E2E HELPERdd] show elements with ${e2eAttr} attribute`);
   let elements = document.querySelectorAll(`[${e2eAttr}]`);
   if (elements.length === 0) {
     console.warn(`[E2E HELPER] no elements with ${e2eAttr} attribute was found!!!`);

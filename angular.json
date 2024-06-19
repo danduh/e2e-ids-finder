@@ -39,7 +39,6 @@
               "node_modules/@dds/angular/styles/dds-fonts.css",
               "node_modules/@dds/angular/styles/dds-icons.css",
               "node_modules/@dds/angular/styles/dds-main.css"
-
             ],
             "scripts": []
           },

@@ -18,16 +18,23 @@ export class ActionsComponent extends BaseChromeClass implements OnInit {
       this.attributeId = await this.loadE2eId()
   }
   async showElements() {
-    chrome.scripting.executeScript({
-      target: {
-        tabId: await this.getTabId(),
-      },
-      func: () => {
-        // @ts-ignore
-        showE2Areas();
-      },
-      // files: [ "/assets/scripts/e2e-searcher.js" ]
-    });
+    try {
+      const tabId = await this.getTabId() || 0
+      chrome.scripting.executeScript({
+        target: {
+          tabId
+        },
+        func: () => {
+          // @ts-ignore
+          showE2Areas();
+        },
+        // files: [ "/assets/scripts/e2e-searcher.js" ]
+      },  (e) => {
+        console.warn(e);
+      });
+    } catch (e){
+      console.error(e)
+    }
   }
 
   async hideElements() {
