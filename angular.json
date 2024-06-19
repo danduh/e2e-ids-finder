@@ -15,11 +15,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "customWebpackConfig": {
-              "path": "./custom-webpack.config.ts"
-            },
+            "allowedCommonJsDependencies": [
+              "prismjs",
+              "reflect-metadata"
+            ],
             "outputPath": "dist/danduh/e2e-test-helper",
             "index": "src/index.html",
             "main": "src/main.ts",
