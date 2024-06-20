@@ -1,6 +1,6 @@
 {
   "name": "@danduh/e2e-test-helper",
-  "version": "3.0.0",
+  "version": "4.2.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,7 +28,6 @@
     "zone.js": "~0.14.2"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^17.0.0",
     "@angular-devkit/build-angular": "^18.0.4",
     "@angular/cli": "~18.0.4",
     "@angular/compiler-cli": "^18.0.3",
@@ -37,11 +36,6 @@
     "@types/prismjs": "^1.26.3",
     "@types/uuid": "^9.0.8",
     "jasmine-core": "~4.5.0",
-    "karma": "~6.4.0",
-    "karma-chrome-launcher": "~3.1.0",
-    "karma-coverage": "~2.2.0",
-    "karma-jasmine": "~5.1.0",
-    "karma-jasmine-html-reporter": "~2.0.0",
     "typescript": "~5.4.5"
   }
 }

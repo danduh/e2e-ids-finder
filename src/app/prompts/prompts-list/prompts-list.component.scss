@@ -1,15 +1,25 @@
-dds-view-more-less{
+dds-view-more-less {
   width: 100%;
 }
-.action-raw{
+
+.action-raw {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   min-width: 100%;
-  .title{
+
+  .title {
 
   }
-  .actions{
 
+  .actions {
+
+  }
+}
+
+.textarea {
+  textarea {
+    padding: 5px 10px !important;
+    font-size: 14px !important;
   }
 }

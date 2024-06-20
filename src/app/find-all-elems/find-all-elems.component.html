@@ -30,27 +30,23 @@
         <div class="dds__col-2">
           <dds-input size="sm" type="text" [required]=true formControlName="pageObjectName">
             <dds-label>Give a name to PageObject</dds-label>
-            <small class="dds__input-text__helper">
-              <dds-helper>TS Style ClassName</dds-helper>
-            </small>
           </dds-input>
         </div>
       </div>
 
       <dds-select size="sm" placeholder="Select an option" formControlName="systemMessage">
         <dds-label>Select System Message</dds-label>
-        <dds-helper>Define your assistant</dds-helper>
         <option *ngFor="let message of systemMessages | async" [value]="message.content">{{ message.title }}</option>
       </dds-select>
       <dds-select size="sm" placeholder="Select an option" formControlName="userPrompt">
         <dds-label>Select User Prompt</dds-label>
-        <dds-helper>Give more context, be specific</dds-helper>
         <option *ngFor="let message of userPrompts | async" [value]="message.content">{{ message.title }}</option>
       </dds-select>
-      <div class="dds__row dds__mt-4">
+      <div class="dds__row dds__mt-1">
         <div class="dds__col-2">
-          <dds-label visual-indicator="on">Provide more details if needed</dds-label>
-          <dds-textarea [rows]=5 [cols]=50 formControlName="customPrompt"></dds-textarea>
+          <dds-textarea [rows]=5 [cols]=50 formControlName="customPrompt">
+            <dds-label visual-indicator="on">More Details</dds-label>
+          </dds-textarea>
         </div>
       </div>
       <div class="dds__row dds__mt-4">
