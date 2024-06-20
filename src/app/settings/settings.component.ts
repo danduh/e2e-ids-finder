@@ -1,86 +1,63 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { AsyncPipe } from "@angular/common";
-import {DDSAngularModule} from "@dds/angular";
-import {LocalData} from "../shared/base-chrome-class";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+import {AsyncPipe, CommonModule} from "@angular/common";
+import {CheckboxModule, DDSAngularModule, HelperModule, IconModule, InputModule, LabelModule} from "@dds/angular";
+import {ConfigurationService, LocalConfiguration} from "../shared/config-store.service";
+import {RouterLink} from "@angular/router";
+import {PromptsListComponent} from "../prompts/prompts-list/prompts-list.component";
+
+const DEFAULT_E2E_ATTR = 'e2e-id';
 
 @Component({
   standalone: true,
   selector: "app-settings",
   templateUrl: "./settings.component.html",
-  imports: [FormsModule, ReactiveFormsModule, AsyncPipe, DDSAngularModule],
+  imports: [FormsModule, ReactiveFormsModule, AsyncPipe, DDSAngularModule, CheckboxModule,
+    HelperModule,
+    InputModule,
+    LabelModule,
+    CommonModule,
+    FormsModule, ReactiveFormsModule, AsyncPipe, DDSAngularModule, IconModule,
+    RouterLink, PromptsListComponent],
+  providers: [ConfigurationService],
   styleUrls: ["./settings.component.scss"],
 })
 export class SettingsComponent implements OnInit {
-  public e2eIdInput: FormControl = new FormControl("s");
-  public includeShadowDom: FormControl = new FormControl(false);
-  public openAIKey: FormControl = new FormControl('');
-  public instanceType: FormControl = new FormControl('');
-  public modelName: FormControl = new FormControl('gpt-4-turbo');
-  public apiEndPoint: FormControl = new FormControl('');
+  configForm = this.fb.group({
+    attributeId: [DEFAULT_E2E_ATTR, Validators.required],
+    openAIKey: [''],
+    includeShadowDom: [false],
+    instanceType: [''],
+    modelName: ['gpt-4-turbo', Validators.required],
+    apiEndPoint: [''],
+  });
 
-  public e2eAttrDef = "e2e-id";
+  constructor(
+    private fb: FormBuilder,
+    private configurationService: ConfigurationService
+  ) {
+  }
+
   public elemExample = this
-    .buildExample`<button ${this.e2eAttrDef}="myLoginBtn"> \n Login \n</button>`;
+    .buildExample`<button ${DEFAULT_E2E_ATTR}="myLoginBtn"> \n Login \n</button>`;
 
   async buildExample(strings: TemplateStringsArray, e2eAttr: string) {
-    const localData = await this.loadE2eId();
-    e2eAttr = localData.attributeId || '';
     return `${strings[0]}${e2eAttr}${strings[1]}`;
   }
 
   async ngOnInit() {
-    const localData = await this.loadE2eId()
-    console.log(localData);
-    this.e2eIdInput.setValue(localData.attributeId);
-    this.openAIKey.setValue(localData.openAIKey);
-    this.includeShadowDom.setValue(localData.includeShadowDom);
-    this.instanceType.setValue(localData.instanceType);
-    this.modelName.setValue(localData.modelName);
-    this.apiEndPoint.setValue(localData.apiEndPoint);
+    const config = await this.configurationService.getConfiguration()
+    this.elemExample = this
+      .buildExample`<button ${config.attributeId as string}="myLoginBtn"> \n Login \n</button>`;
+
+    this.configForm.setValue(config as LocalConfiguration)
   }
 
-  async saveE2e() {
-    const e2eAttr = this.e2eIdInput.getRawValue();
-    const includeShadowDom = this.includeShadowDom.getRawValue();
-    const openAIKey = this.openAIKey.getRawValue();
-    const instanceType = this.instanceType.getRawValue();
-    const modelName = this.modelName.getRawValue();
-    const apiEndPoint = this.apiEndPoint.getRawValue();
-    await chrome.storage.sync.set({
-      attributeId: e2eAttr,
-      includeShadowDom,
-      openAIKey,
-      instanceType,
-      modelName,
-      apiEndPoint
-    });
-
-    console.log('saved', {
-      attributeId: e2eAttr,
-      includeShadowDom,
-      openAIKey,
-      instanceType,
-      modelName
-    });
+  async saveConfig() {
+    await this.configurationService.saveConfiguration(this.configForm.value as LocalConfiguration)
+      .catch(console.error)
 
     this.elemExample = this
-      .buildExample`<button ${e2eAttr}="myLoginBtn"> \n Login \n</button>`;
+      .buildExample`<button ${this.configForm.value.attributeId as string}="myLoginBtn"> \n Login \n</button>`;
   }
-
-  async loadE2eId(): Promise<LocalData> {
-    return await chrome.storage.sync
-      .get({
-        attributeId: "e2e-id",
-        openAIKey: "openAIKey",
-        includeShadowDom: false,
-        instanceType: "",
-        modelName: "",
-        apiEndPoint:""
-      })
-      .then((resp) => {
-        return resp;
-      });
-  }
-
 }

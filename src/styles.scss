@@ -1,6 +1,8 @@
-// @import "~prismjs/themes/prism-ghcolors.css";
+//@use "@dds/angular/styles/dds-icons.css";
+
 @import "./prismjs-theme.css";
 @import "node_modules/@dds/angular/styles/dds-helpers.css";
+
 button:focus {
   outline: none;
   outline: none;
@@ -11,4 +13,9 @@ body {
   margin: 0;
 }
 
-
+@font-face {
+  font-family: "dds-icons";
+  font-style: normal;
+  font-weight: normal;
+  src: url("assets/fonts/dds-icons.woff2") format("woff2"), url("assets/fonts/dds-icons.woff") format("woff");
+}

@@ -4,6 +4,17 @@ A helpful tool for locating UI elements for Cypress, Playwright, Selenium, Squis
 This extension comes to improve the experience of UI Test development.
 While developing E2E tests (aka UI tests with Cypress, Playwright, Selenium, Squish and others), a developer can simply see the elements on the page and selectors for these elements.
 
+### How to install
+
+* Gow to [release page](https://eos2git.cec.lab.emc.com/daniel-ostrovsky/ui-tests-ai-helper/releases/tag/v3.0.0)
+* Download `package.zip` file
+* unpack
+* in Chrome navigate to [chrome://extensions](chrome://extensions)
+* Click on **Load unpacked extension**
+* Select the unpacked folder.
+
+That's it... Any suggestions are welcome :)
+
 ## Create Page Objects for Cypress tests (Beta)
 
 >Supports OpenAI and AzureAI only
@@ -28,11 +39,3 @@ This extension helps you to create a page objects for Cypress tests.
 * Click on the **Settings** tab
 * Do not forget to click on **Save**
 
-### How to install
-
-* [download relaese](https://github.com/danduh/e2e-ids-finder/releases)
-* unpack
-* in Chrome navigate to [chrome://extensions](chrome://extensions)
-* Click on **Load unpacked extension**
-
-That's it... Any suggestions are welcome :)

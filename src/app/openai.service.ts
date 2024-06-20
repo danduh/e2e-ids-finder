@@ -1,38 +1,42 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 import OpenAI from "openai";
 
-import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
-import { promptV1 } from "./prompts";
-import { ChatCompletionMessageParam } from "openai/resources";
+import {OpenAIClient, AzureKeyCredential} from "@azure/openai";
+import {promptV1} from "./prompts";
+import {ChatCompletionMessageParam} from "openai/resources";
 import {LocalData} from "./shared/base-chrome-class";
+import {ConfigurationService, LocalConfiguration} from "./shared/config-store.service";
 
 @Injectable()
 export class OpenAiService {
   openai!: OpenAI;
-  azureAI! : OpenAIClient;
+  azureAI!: OpenAIClient;
 
 
-  localData!: LocalData;
-  constructor() {
+  localData!: LocalConfiguration;
+
+  constructor(private configurationService: ConfigurationService) {
     this.initService()
   }
 
   async initService() {
-    this.localData = await chrome.storage.sync.get()
+    this.localData = await this.configurationService.getConfiguration()
 
     this.openai = new OpenAI({
-      apiKey: this.localData.openAIKey,
+      apiKey: this.localData.openAIKey || '',
       dangerouslyAllowBrowser: true,
+      baseURL: this.localData.apiEndPoint || undefined
     });
 
-    this.azureAI = new OpenAIClient(
-      this.localData.apiEndPoint as string,
-      new AzureKeyCredential(this.localData.openAIKey as string)
-    );
+    if (this.localData.instanceType === "AzureAI")
+      this.azureAI = new OpenAIClient(
+        this.localData.apiEndPoint as string,
+        new AzureKeyCredential(this.localData.openAIKey as string)
+      );
   }
 
-  askAI = ()=>{
-    switch (this.localData.instanceType){
+  askAI = () => {
+    switch (this.localData.instanceType) {
       case "AzureAI":
         return this.askAzureAI.bind(this)
       case "OpenAI":
@@ -43,11 +47,12 @@ export class OpenAiService {
     }
   }
 
-   askAzureAI = async (
+  askAzureAI = async (
     elemsString: string,
     e2eAttr: string,
     customPrompt = "",
-    poClassName = "SomePageObject"    
+    poClassName = "SomePageObject",
+    systemMessage: string
   ) => {
     const deploymentId = this.localData.modelName as string;
     const messages = promptV1({
@@ -55,6 +60,7 @@ export class OpenAiService {
       elemsString,
       customPrompt,
       poClassName,
+      systemMessage
     });
 
     const response = await this.azureAI.getChatCompletions(deploymentId, messages, {
@@ -70,7 +76,8 @@ export class OpenAiService {
     elemsString: string,
     e2eAttr: string,
     customPrompt = "",
-    poClassName = "SomePageObject"
+    poClassName = "SomePageObject",
+    systemMessage: string
   ) => {
     const t = await this.openai.chat.completions
       .create({
@@ -81,6 +88,7 @@ export class OpenAiService {
           elemsString,
           customPrompt,
           poClassName,
+          systemMessage
         }) as unknown as Array<ChatCompletionMessageParam>,
       })
       .asResponse()

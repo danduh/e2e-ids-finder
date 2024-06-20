@@ -1,0 +1,52 @@
+site_name: E2E Tests AI Helper
+site_description: Documentation for the E2E Test Helper Chrome Extension
+site_url: https://e2eai.danduh.me
+nav:
+  - Home: index.md
+  - "Getting Started": getting-started.md
+  - Prompts: prompts.md
+  - Settings: settings.md
+  - Contribute: contribute.md
+
+repo_url: https://github.com/danduh/e2e-ids-finder
+
+theme:
+  logo: ./img/icon128.png
+  favicon: ./img/icon-32.png
+  name: material
+  palette:
+    primary: blue
+
+  features:
+    - toc.integrate
+    - navigation.footer
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+
+markdown_extensions:
+  - attr_list
+  - md_in_html
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/danduh/e2e-ids-finder
+
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/danduh81
+
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/danduh/
+
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@danduh81
+
+  analytics:
+    provider: google
+    property: G-S8DM4C7W6H
+
+plugins:
+  - glightbox
+
+copyright: Copyright &copy; 2020 - 2024 Daniel Ostrovsky
