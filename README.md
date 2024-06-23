@@ -8,7 +8,7 @@ While developing E2E tests (aka UI tests with Cypress, Playwright, Selenium, Squ
 
 Detailed can be found here: https://e2eai.danduh.me/contribute/#loading-the-unpacked-extension-into-chrome
 
-* Gow to [release page](https://eos2git.cec.lab.emc.com/daniel-ostrovsky/ui-tests-ai-helper/releases/tag/v3.0.0)
+* Gow to [release page](https://github.com/danduh/e2e-ids-finder/releases)
 * Download `package.zip` file
 * unpack
 * in Chrome navigate to [chrome://extensions](chrome://extensions)
