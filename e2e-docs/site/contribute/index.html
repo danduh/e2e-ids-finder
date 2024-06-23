@@ -90,6 +90,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#contribute" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -386,6 +391,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Contribute
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -396,6 +414,85 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#loading-the-unpacked-extension-into-chrome" class="md-nav__link">
+    <span class="md-ellipsis">
+      Loading the Unpacked Extension into Chrome
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Loading the Unpacked Extension into Chrome">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-the-extension-package" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Download the Extension Package
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-unpack-the-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Unpack the Extension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-load-the-unpacked-extension-into-chrome" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Load the Unpacked Extension into Chrome
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-verify-the-extension-is-loaded" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Verify the Extension is Loaded
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -419,9 +516,38 @@
   
 
 
-  <h1>Contribute</h1>
-
-
+<h1 id="contribute">Contribute</h1>
+<h2 id="loading-the-unpacked-extension-into-chrome">Loading the Unpacked Extension into Chrome</h2>
+<p>Follow these steps to load the unpacked extension into your Chrome browser:</p>
+<h3 id="step-1-download-the-extension-package">Step 1: Download the Extension Package</h3>
+<ol>
+<li><strong>Go to the Release Page</strong>: Visit the <a href="https://eos2git.cec.lab.emc.com/daniel-ostrovsky/ui-tests-ai-helper">Release Page</a>.</li>
+<li><strong>Download the Latest Release</strong>: Select the latest release and download the <code>package.zip</code> file.</li>
+</ol>
+<h3 id="step-2-unpack-the-extension">Step 2: Unpack the Extension</h3>
+<ol>
+<li><strong>Unzip the File</strong>: Locate the downloaded <code>package.zip</code> file on your computer and unzip it. You can use any standard unzip tool.</li>
+<li><strong>Extract the Contents</strong>: Extract the contents of the zip file to a folder on your computer. Make sure you remember the location of this folder.</li>
+</ol>
+<p><a class="glightbox" href="../img/extension.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="right" alt="Enable Developer Mode" src="../img/extension.png" width="350" /></a></p>
+<h3 id="step-3-load-the-unpacked-extension-into-chrome">Step 3: Load the Unpacked Extension into Chrome</h3>
+<ol>
+<li><strong>Open Chrome</strong>: Launch the Google Chrome browser on your computer.</li>
+<li><strong>Access Extensions Page</strong>: Navigate to <a href="chrome://extensions/">Extensions Page</a></li>
+<li><strong>Enable Developer Mode</strong>: In the Extensions page, enable <strong>Developer mode</strong> by toggling the switch in the upper right corner of the page.</li>
+<li><strong>Load Unpacked Extension</strong>: Click the <strong>Load unpacked</strong> button.</li>
+<li><strong>Select the Extension Folder</strong>: In the file dialog that opens, navigate to the folder where you unpacked the extension files and select it. Click <strong>Select Folder</strong>.</li>
+</ol>
+<h3 id="step-4-verify-the-extension-is-loaded">Step 4: Verify the Extension is Loaded</h3>
+<ol>
+<li><strong>Check Extension List</strong>: The extension should now appear in your list of installed extensions. Ensure that it is enabled.</li>
+<li><strong>Pin the Extension (Optional)</strong>: For easy access, you can pin the extension to the Chrome toolbar by clicking on the extension icon next to the address bar and selecting the pin icon.</li>
+</ol>
+<h3 id="notes">Notes</h3>
+<ul>
+<li><strong>Updating the Extension</strong>: If you need to update the extension, repeat the steps to download the latest version and load it as an unpacked extension. Chrome will prompt you to replace the existing one.</li>
+<li><strong>Troubleshooting</strong>: If the extension does not load, ensure that all files are correctly extracted and that there are no missing files. Check the Chrome console for any error messages.</li>
+</ul>
 
 
 
