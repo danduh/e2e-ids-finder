@@ -6,6 +6,8 @@ While developing E2E tests (aka UI tests with Cypress, Playwright, Selenium, Squ
 
 ### How to install
 
+Detailed can be found here: https://e2eai.danduh.me/contribute/#loading-the-unpacked-extension-into-chrome
+
 * Gow to [release page](https://eos2git.cec.lab.emc.com/daniel-ostrovsky/ui-tests-ai-helper/releases/tag/v3.0.0)
 * Download `package.zip` file
 * unpack
