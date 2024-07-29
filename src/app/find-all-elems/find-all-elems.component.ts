@@ -1,24 +1,24 @@
-import {ChangeDetectorRef, Component, OnInit} from "@angular/core";
-import {BaseChromeClass, getTabId} from "../shared/base-chrome-class";
-import {FormBuilder, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {OpenAiService} from "../openai.service";
-import {CodeHolderComponent} from "../code-holder/code-holder.component";
-import {CommonModule} from "@angular/common";
-import {ButtonModule, DDSAngularModule} from "@dds/angular";
-import {PromptMessage, PromptsStoreService} from "../shared/prompts-store.service";
-import {ConfigurationService, LocalConfiguration} from "../shared/config-store.service";
+import { ChangeDetectorRef, Component, OnInit } from "@angular/core";
+import { getTabId } from "../shared/base-chrome-class";
+import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { OpenAiService } from "../openai.service";
+import { CodeHolderComponent } from "../code-holder/code-holder.component";
+import { CommonModule } from "@angular/common";
+import { ButtonModule, DDSAngularModule } from "@dds/angular";
+import { PromptMessage, PromptsStoreService } from "../shared/prompts-store.service";
+import { ConfigurationService, LocalConfiguration } from "../shared/config-store.service";
 
-function interpolateString(template: string, values: any) {
+function interpolateString(template: string, values: any){
   return template.replace(/\${(.*?)}/g, (match, p1) => values[p1.trim()]);
 };
 
 @Component({
   selector: "app-find-all-elems",
   standalone: true,
-  imports: [FormsModule, CodeHolderComponent, CommonModule, ButtonModule, DDSAngularModule, ReactiveFormsModule],
+  imports: [ FormsModule, CodeHolderComponent, CommonModule, ButtonModule, DDSAngularModule, ReactiveFormsModule ],
   templateUrl: "./find-all-elems.component.html",
   styleUrl: "./find-all-elems.component.scss",
-  providers: [OpenAiService, PromptsStoreService, ConfigurationService],
+  providers: [ OpenAiService, PromptsStoreService, ConfigurationService ],
 })
 export class FindAllElemsComponent implements OnInit {
   systemMessages!: Promise<PromptMessage[]>;
@@ -34,8 +34,8 @@ export class FindAllElemsComponent implements OnInit {
   requestForm = this.fb.group({
     pageObjectName: [],
     systemMessage: [],
-    userPrompt: [''],
-    customPrompt: ['']
+    userPrompt: [ '' ],
+    customPrompt: [ '' ]
   });
 
   constructor(
@@ -44,18 +44,18 @@ export class FindAllElemsComponent implements OnInit {
     private openAiService: OpenAiService,
     private storageService: PromptsStoreService,
     private configurationService: ConfigurationService
-  ) {
+  ){
 
   }
 
   loaderVisible = false;
 
-  async ngOnInit() {
+  async ngOnInit(){
     await this.loadMessages()
     this.config = await this.configurationService.getConfiguration()
   }
 
-  async loadMessages() {
+  async loadMessages(){
     try {
       this.systemMessages = this.storageService.getSystemMessages();
       this.userPrompts = this.storageService.getUserPrompts();
@@ -65,13 +65,13 @@ export class FindAllElemsComponent implements OnInit {
   }
 
 
-  async findAllElements() {
+  async findAllElements(){
     const e2eAttr = this.config.attributeId
     const tabId = await getTabId()
 
     chrome.tabs.sendMessage(
       tabId,
-      {action: "findAllActionElements", e2eAttr},
+      { action: "findAllActionElements", e2eAttr },
       (response) => {
         if (response.html) {
           // Display the HTML in your extension's UI
@@ -85,24 +85,30 @@ export class FindAllElemsComponent implements OnInit {
     );
   }
 
-  async sendRequest() {
+  async sendRequest(){
     const request = this.requestForm.value;
     const e2eAttr = this.config.attributeId || '';
-    const values = {e2eAttr: e2eAttr};
+    const values = { e2eAttr: e2eAttr };
 
     const systemMessage = interpolateString(request.systemMessage || '', values);
     this.loaderVisible = true;
-    this.pageObject = await this.openAiService.askAI()(
-      this.allElements,
-      e2eAttr,
-      request.customPrompt || '',
-      request.pageObjectName || '',
-      systemMessage
-    );
+    try {
+      this.pageObject = await this.openAiService.askAI()(
+        this.allElements,
+        e2eAttr,
+        request.customPrompt || '',
+        request.pageObjectName || '',
+        systemMessage
+      );
+    } catch (error: unknown) {
+      if(error instanceof Error)
+        this.pageObject = error.message;
+      
+    }
     this.loaderVisible = false;
   }
 
-  toggleHtml() {
+  toggleHtml(){
     this.showHtml = !this.showHtml;
   }
 }
