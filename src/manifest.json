@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "4.2.2",
+  "version": "4.3.0",
   "name": "E2E Test Helper",
   "description": "A helpful tool for locating UI elements for Cypress, Playwright, Selenium. Will create a Page Objects for by Generative AI.",
   "author": "Daniel Ostrovsky",
@@ -10,7 +10,8 @@
   "host_permissions": [
     "https://*.dell.com/*",
     "https://api.openai.com/*",
-    "https://*.delllabs.net/*"
+    "https://*.delllabs.net/*",
+    "http://localhost/*"
   ],
   "icons": {
     "16": "assets/icon16.png",

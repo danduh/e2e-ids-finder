@@ -29,15 +29,18 @@ export const promptV1 = ({
                            systemMessage,
                            userPrompt
                          }: PromptData): any[] => {
-  console.log({
-    elemsString,
-    e2eAttr,
-    customPrompt,
-    poClassName,
-    systemMessage,
-    userPrompt
-  })
 
+  if (customPrompt === "TEST_CONNECTION")
+    return [
+      {
+        role: "system",
+        content: systemMessage
+      },
+      {
+        role: "user",
+        content: `Describe yourself`,
+      },
+    ]
   return [
     {
       role: "system",

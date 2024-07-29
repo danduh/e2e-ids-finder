@@ -41,3 +41,11 @@ This extension helps you to create a page objects for Cypress tests.
 * Click on the **Settings** tab
 * Do not forget to click on **Save**
 
+# Build
+
+```shell
+npm run build
+cd dist
+zip package-<version>.zip -r e2e-test-helper/
+```
+
