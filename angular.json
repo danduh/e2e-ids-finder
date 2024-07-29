@@ -21,7 +21,7 @@
               "prismjs",
               "reflect-metadata"
             ],
-            "outputPath": "dist/danduh/e2e-test-helper",
+            "outputPath": "dist/e2e-test-helper",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [

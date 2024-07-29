@@ -4,7 +4,6 @@ import OpenAI from "openai";
 import {OpenAIClient, AzureKeyCredential} from "@azure/openai";
 import {promptV1} from "./prompts";
 import {ChatCompletionMessageParam} from "openai/resources";
-import {LocalData} from "./shared/base-chrome-class";
 import {ConfigurationService, LocalConfiguration} from "./shared/config-store.service";
 
 @Injectable()

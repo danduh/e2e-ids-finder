@@ -5,6 +5,7 @@
       <dds-input size="sm" [required]="true" formControlName="attributeId">
         <dds-label visual-indicator="on">Set E2E Attribute => [a-Z,0-9,-,_]</dds-label>
         <dds-helper>Enter E2E Attribute Name</dds-helper>
+        <dds-error>Attribute is required</dds-error>
       </dds-input>
     </div>
     <div class="dds__form__field">
@@ -33,12 +34,24 @@
     <div class="dds__form__field">
       <dds-input size="sm" formControlName="modelName">
         <dds-label visual-indicator="on">Model Name <small>gpt-4-turbo / gpt-4o / llama3</small></dds-label>
+        <dds-error>Model is required</dds-error>
       </dds-input>
     </div>
 
   </fieldset>
   <div class="dds__form__field">
     <dds-button size="mini" class="btn default" type="submit">Save</dds-button>
+    <dds-button size="mini" class="btn default" type="button" (click)="testSettings()">Test Settings</dds-button>
   </div>
   </form>
+  <dds-overlay [visible]="loaderVisible" aria-live="polite">
+    <dds-loading-indicator [elevation]="true" size="md">Waiting for AI</dds-loading-indicator>
+  </dds-overlay>
 </div>
+
+<dds-modal size="md" #modal>
+  <dds-modal-header>Test Connection</dds-modal-header>
+  <dds-modal-body>
+    {{testResponse}}
+  </dds-modal-body>
+</dds-modal>
