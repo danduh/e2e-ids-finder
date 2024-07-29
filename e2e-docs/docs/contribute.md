@@ -6,7 +6,7 @@ Follow these steps to load the unpacked extension into your Chrome browser:
 
 ### Step 1: Download the Extension Package
 
-1. **Go to the Release Page**: Visit the [Release Page](https://eos2git.cec.lab.emc.com/daniel-ostrovsky/ui-tests-ai-helper).
+1. **Go to the Release Page**: Visit the [Release Page](https://github.com/danduh/e2e-ids-finder/releases).
 2. **Download the Latest Release**: Select the latest release and download the `package.zip` file.
 
 ### Step 2: Unpack the Extension
