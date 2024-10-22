@@ -1,21 +1,33 @@
-//@use "@dds/angular/styles/dds-icons.css";
-
+@use '@angular/material' as mat;
 @import "./prismjs-theme.css";
-@import "node_modules/@dds/angular/styles/dds-helpers.css";
 
-button:focus {
-  outline: none;
-  outline: none;
-}
 
+$theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  typography: (
+    brand-family: 'Comic Sans',
+    bold-weight: 900
+  ),
+  //density: (
+  //  scale: -1
+  //)
+));
 body {
-  // background: #F4F4F4;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
+  padding: 30px;
+  height: 100%;
+  //background: #101414;
+  @include mat.all-component-themes($theme);
 }
 
-@font-face {
-  font-family: "dds-icons";
-  font-style: normal;
-  font-weight: normal;
-  src: url("assets/fonts/dds-icons.woff2") format("woff2"), url("assets/fonts/dds-icons.woff") format("woff");
+html {
+  height: 100%;
 }
+
+@include mat.core();
+@include mat.color-variants-backwards-compatibility($theme);

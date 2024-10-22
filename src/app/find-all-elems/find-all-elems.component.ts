@@ -4,9 +4,13 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { OpenAiService } from "../openai.service";
 import { CodeHolderComponent } from "../code-holder/code-holder.component";
 import { CommonModule } from "@angular/common";
-import { ButtonModule, DDSAngularModule } from "@dds/angular";
 import { PromptMessage, PromptsStoreService } from "../shared/prompts-store.service";
 import { ConfigurationService, LocalConfiguration } from "../shared/config-store.service";
+import {MatButton} from "@angular/material/button";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
+import {MatFormField, MatLabel} from "@angular/material/form-field";
+import {MatOption, MatSelect} from "@angular/material/select";
+import {MatInput} from "@angular/material/input";
 
 function interpolateString(template: string, values: any){
   return template.replace(/\${(.*?)}/g, (match, p1) => values[p1.trim()]);
@@ -15,7 +19,7 @@ function interpolateString(template: string, values: any){
 @Component({
   selector: "app-find-all-elems",
   standalone: true,
-  imports: [ FormsModule, CodeHolderComponent, CommonModule, ButtonModule, DDSAngularModule, ReactiveFormsModule ],
+  imports: [FormsModule, CodeHolderComponent, CommonModule, MatButton, ReactiveFormsModule, MatProgressSpinner, MatLabel, MatFormField, MatSelect, MatOption, MatInput],
   templateUrl: "./find-all-elems.component.html",
   styleUrl: "./find-all-elems.component.scss",
   providers: [ OpenAiService, PromptsStoreService, ConfigurationService ],
@@ -103,7 +107,7 @@ export class FindAllElemsComponent implements OnInit {
     } catch (error: unknown) {
       if(error instanceof Error)
         this.pageObject = error.message;
-      
+
     }
     this.loaderVisible = false;
   }

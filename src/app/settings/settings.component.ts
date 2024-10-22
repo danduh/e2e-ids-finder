@@ -1,12 +1,15 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AsyncPipe, CommonModule } from "@angular/common";
-import { CheckboxModule, DDSAngularModule, HelperModule, IconModule, InputModule, LabelModule } from "@dds/angular";
 import { ConfigurationService, LocalConfiguration } from "../shared/config-store.service";
 import { RouterLink } from "@angular/router";
 import { PromptsListComponent } from "../prompts/prompts-list/prompts-list.component";
 import { OpenAiService } from "../openai.service";
-import { ModalComponent } from "@dds/angular/lib/modal/modal.component";
+import {MatDialog} from "@angular/material/dialog";
+import {MatError, MatHint, MatInput, MatLabel} from "@angular/material/input";
+import {MatCheckbox} from "@angular/material/checkbox";
+import {MatSelect} from "@angular/material/select";
+import {MatButton} from "@angular/material/button";
 
 const DEFAULT_E2E_ATTR = 'e2e-id';
 
@@ -14,13 +17,10 @@ const DEFAULT_E2E_ATTR = 'e2e-id';
   standalone: true,
   selector: "app-settings",
   templateUrl: "./settings.component.html",
-  imports: [  CheckboxModule,
-    HelperModule,
-    InputModule,
-    LabelModule,
+  imports: [
     CommonModule,
-    FormsModule, ReactiveFormsModule, AsyncPipe, DDSAngularModule, IconModule,
-    RouterLink, PromptsListComponent ],
+    FormsModule, ReactiveFormsModule, AsyncPipe,
+    RouterLink, PromptsListComponent, MatInput, MatLabel, MatHint, MatError, MatCheckbox, MatSelect, MatButton],
   providers: [ ConfigurationService, OpenAiService ],
   styleUrls: [ "./settings.component.scss" ],
 })
@@ -36,7 +36,7 @@ export class SettingsComponent implements OnInit {
   });
   public testResponse: string = '';
 
-  @ViewChild('modal') modal!: ModalComponent
+  @ViewChild('modal') modal!: MatDialog
 
   constructor(
     private fb: FormBuilder,
@@ -87,6 +87,6 @@ export class SettingsComponent implements OnInit {
         console.error(e)
     }
     this.loaderVisible = false;
-    this.modal.open()
+    // this.modal.open()
   }
 }

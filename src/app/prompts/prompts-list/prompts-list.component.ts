@@ -1,9 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {ButtonModule, HelperModule, InputModule, LabelModule, TextAreaModule, ViewMoreLessModule} from "@dds/angular";
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {PromptMessage} from "../../shared/prompts-store.service";
 import {v4 as uuidv4} from "uuid";
+import {MatAccordion, MatExpansionPanel} from "@angular/material/expansion";
+import {MatButton} from "@angular/material/button";
+import {MatHint, MatInput, MatLabel} from "@angular/material/input";
+import {MatIcon} from "@angular/material/icon";
 
 
 export enum PromptType {
@@ -21,16 +24,17 @@ export type PromptEvent = {
   standalone: true,
   imports: [
     AsyncPipe,
-    ButtonModule,
     FormsModule,
-    HelperModule,
-    InputModule,
-    LabelModule,
     NgForOf,
     NgIf,
     ReactiveFormsModule,
-    TextAreaModule,
-    ViewMoreLessModule
+    MatAccordion,
+    MatExpansionPanel,
+    MatButton,
+    MatInput,
+    MatLabel,
+    MatHint,
+    MatIcon,
   ],
   templateUrl: './prompts-list.component.html',
   styleUrl: './prompts-list.component.scss'

@@ -1,19 +1,35 @@
-<dds-tabs>
-  <dds-tabs-header #tabsHeader>
-    <dds-tab-label routerLink="/allElements">
-        Use AI (beta)
-    </dds-tab-label>
-    <dds-tab-label routerLink="/actions">
-        Actions
-    </dds-tab-label>
-    <dds-tab-label routerLink="/prompts">
-      Prompts
-    </dds-tab-label>
-    <dds-tab-label routerLink="/settings">
-      Settings
-    </dds-tab-label>
-  </dds-tabs-header>
-</dds-tabs>
-<div class="main-wrapper">
+<!--<dds-tabs>-->
+<!--  <dds-tabs-header #tabsHeader>-->
+<!--    <dds-tab-label routerLink="/allElements">-->
+<!--        Use AI (beta)-->
+<!--    </dds-tab-label>-->
+<!--    <dds-tab-label routerLink="/actions">-->
+<!--        Actions-->
+<!--    </dds-tab-label>-->
+<!--    <dds-tab-label routerLink="/prompts">-->
+<!--      Prompts-->
+<!--    </dds-tab-label>-->
+<!--    <dds-tab-label routerLink="/settings">-->
+<!--      Settings-->
+<!--    </dds-tab-label>-->
+<!--  </dds-tabs-header>-->
+<!--</dds-tabs>-->
+<!--<div class="main-wrapper">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->
+
+<nav mat-tab-nav-bar [tabPanel]="tabPanel" color="primary">
+  @for (link of navLinks; track link) {
+    <a mat-tab-link
+       [routerLink]="[link.link]"
+       [active]="activeLink == link.link"> {{link.label}} </a>
+  }
+</nav>
+
+<mat-tab-nav-panel #tabPanel>
   <router-outlet></router-outlet>
-</div>
+</mat-tab-nav-panel>
+
+<!--<div class="main-wrapper">-->
+<!--  <router-outlet></router-outlet>-->
+<!--</div>-->

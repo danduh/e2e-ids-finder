@@ -1,45 +1,41 @@
 <div class="dds__container dds__container--compact">
   <div class="dds__row dds__mt-1" *ngFor="let message of propts | async">
-    <dds-view-more-less>
-      <div class="action-raw">
+    <mat-accordion>
+      <mat-expansion-panel>
         <div class="title">
-          <dds-view-more-less-button
-            [localization]="{'viewMore':message.title,'viewLess':message.title}"></dds-view-more-less-button>
+<!--          <dds-view-more-less-button-->
+<!--            [localization]="{'viewMore':message.title,'viewLess':message.title}"></dds-view-more-less-button>-->
         </div>
         <div class="actions">
-          <dds-button size="mini" (click)="copyPrompt(message)" icon-name="copy-alt"
-                      [icon-only]=true></dds-button>
-          <dds-button size="mini" (click)="editPrompt(message)" icon-name="pencil"
-                      [icon-only]=true></dds-button>
-          <dds-button size="mini" (click)="deletePrompt(message)" icon-name="trash" color="destructive"
-                      [icon-only]=true></dds-button>
+          <mat-icon size="mini" (click)="copyPrompt(message)" icon-name="copy-alt"></mat-icon>
+          <mat-icon size="mini" (click)="editPrompt(message)" icon-name="pencil"></mat-icon>
+          <mat-icon size="mini" (click)="deletePrompt(message)" icon-name="trash" color="destructive"></mat-icon>
         </div>
-      </div>
+      </mat-expansion-panel>
       <div class="dds__row">
         <p as-target class="dds__body-3">
           {{ message.content }}
         </p>
       </div>
-    </dds-view-more-less>
+    </mat-accordion>
   </div>
   <div class="dds__row dds__mt-1" *ngIf="!openForm">
-    <dds-button size="mini" (click)="openForm = true">Add New {{ type }} Message</dds-button>
+    <button mat-button size="mini" (click)="openForm = true">Add New {{ type }} Message</button>
   </div>
   <form *ngIf="openForm" [formGroup]="promptsForm" (ngSubmit)="savePrompt()">
     <fieldset class="dds__form__section">
       <div class="dds__form__field">
-        <dds-input size="sm" [required]="true" formControlName="title">
-          <dds-label visual-indicator="on">Give a Title</dds-label>
-          <dds-helper>Create a {{ type }} message.</dds-helper>
-        </dds-input>
+        <input matInput size="sm" [required]="true" formControlName="title">
+          <mat-label visual-indicator="on">Give a Title</mat-label>
+          <mat-hint>Create a {{ type }} message.</mat-hint>
       </div>
       <div class="dds__form__field">
-        <dds-textarea class="textarea" [rows]=5 [cols]=50 formControlName="content"></dds-textarea>
+        <textarea matInput class="textarea" [rows]=5 [cols]=50 formControlName="content"></textarea>
       </div>
     </fieldset>
     <div class="dds__form__field">
-      <dds-button size="mini" type="submit" class="btn default">Save</dds-button>
-      <dds-button size="mini" kind="secondary" (click)="openForm = false">Cancel</dds-button>
+      <button mat-button size="mini" type="submit" class="btn default">Save</button>
+      <button mat-button size="mini" kind="secondary" (click)="openForm = false">Cancel</button>
     </div>
   </form>
 </div>

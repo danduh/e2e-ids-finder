@@ -1,25 +1,17 @@
-<dds-tabs kind="contained">
-  <dds-tabs-header>
-    <dds-tab-label>
-      System
-    </dds-tab-label>
-    <dds-tab-label>
-      User
-    </dds-tab-label>
-  </dds-tabs-header>
-  <dds-tabs-body>
-    <dds-tab-panel>
-      <h6>System Messages</h6>
-      <p class="dds__caption">
-        System messages allow you to customize the behavior and responses of your testing assistant, ensuring it aligns
-        perfectly with your testing needs and preferences.
-      </p>
-      <app-prompts-list [propts]="systemMessages" (promptEvent)="promptEvent($event)"
-                        [type]="PromptType.SYSTEM"></app-prompts-list>
-    </dds-tab-panel>
-    <dds-tab-panel>
-      <app-prompts-list [propts]="userPrompts" (promptEvent)="promptEvent($event)"
-                        [type]="PromptType.USER"></app-prompts-list>
-    </dds-tab-panel>
-  </dds-tabs-body>
-</dds-tabs>
+<mat-tab-group kind="contained">
+  <mat-tab label="System">
+
+    <h6>System Messages</h6>
+    <p class="dds__caption">
+      System messages allow you to customize the behavior and responses of your testing assistant, ensuring it aligns
+      perfectly with your testing needs and preferences.
+    </p>
+    <app-prompts-list [propts]="systemMessages" (promptEvent)="promptEvent($event)"
+                      [type]="PromptType.SYSTEM"></app-prompts-list>
+  </mat-tab>
+  <mat-tab label="User">
+    <app-prompts-list [propts]="userPrompts" (promptEvent)="promptEvent($event)"
+                      [type]="PromptType.USER"></app-prompts-list>
+
+  </mat-tab>
+</mat-tab-group>

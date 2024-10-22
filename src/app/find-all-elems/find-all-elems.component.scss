@@ -2,3 +2,17 @@
   width: 100%;
 }
 
+.row {
+  margin-top: 15px;
+}
+
+.spacer{
+  display: flex;
+  justify-content: space-between;
+}
+.input-full{
+  width: 100%;
+}
+.input-half{
+  width: 45%;
+}

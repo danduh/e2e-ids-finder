@@ -9,13 +9,12 @@ import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-typescript";
 import "prismjs/components/prism-scss";
 import { importProvidersFrom } from "@angular/core";
-import {DDSAngularModule} from "@dds/angular";
 import {PromptsComponent} from "./app/prompts/prompts.component";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom([DDSAngularModule]),
+    // importProvidersFrom([DDSAngularModule]),
     provideAnimationsAsync(),
     provideRouter([
       { path: "", redirectTo: "allElements", pathMatch: "full" },

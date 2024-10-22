@@ -1,12 +1,12 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as Prism from "prismjs";
-import { DDSAngularModule } from "@dds/angular";
+import {MatButton} from "@angular/material/button";
 
 @Component({
   selector: "app-snippet",
   standalone: true,
   imports: [
-    DDSAngularModule
+    MatButton
   ],
   templateUrl: "./snippet.component.html",
   styleUrl: "./snippet.component.scss",
