@@ -1,48 +1,54 @@
-<div class="dds__container dds__container--compact">
+<mat-progress-bar *ngIf="loaderVisible" mode="indeterminate"></mat-progress-bar>
+<div class="container">
   <form [formGroup]="configForm" (ngSubmit)="saveConfig()">
-  <fieldset class="dds__form__section">
-    <div class="dds__form__field">
-      <input matInput size="sm" [required]="true" formControlName="attributeId">
-        <mat-label visual-indicator="on">Set E2E Attribute => [a-Z,0-9,-,_]</mat-label>
+    <div class="row">
+      <mat-form-field class="input-full" appearance="outline">
+        <input matInput size="sm" [required]="true" formControlName="attributeId">
+        <mat-label>Set E2E Attribute => [a-Z,0-9,-,_]</mat-label>
         <mat-hint>Enter E2E Attribute Name</mat-hint>
         <mat-error>Attribute is required</mat-error>
+      </mat-form-field>
     </div>
-    <div class="dds__form__field">
-      <mat-checkbox size="sm"formControlName="includeShadowDom">
-        <mat-label visual-indicator="on">Include Shadow Dom (beta)</mat-label>
+    <div class="row">
+      <mat-checkbox size="sm" formControlName="includeShadowDom">
+        <mat-label>Include Shadow Dom (beta)</mat-label>
       </mat-checkbox>
     </div>
-    <div class="dds__form__field">
-      <mat-select size="sm" formControlName="instanceType">
-        <mat-label visual-indicator="on">Select AI Instance</mat-label>
+    <div class="row">
+      <mat-form-field class="input-full" appearance="outline">
+        <mat-label>Select AI Instance</mat-label>
         <mat-hint>Select what instance you want to interact with</mat-hint>
-        <option value="AzureAI">AzureAI</option>
-        <option value="OpenAI">OpenAI/Llama</option>
-      </mat-select>
+        <mat-select size="sm" formControlName="instanceType">
+          <mat-option value="AzureAI">AzureAI</mat-option>
+          <mat-option value="OpenAI">OpenAI/Llama</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div class="dds__form__field">
-      <input matInput size="sm" formControlName="apiEndPoint">
-        <mat-label visual-indicator="on">AI EndPoint <small>for on-prem Models</small></mat-label>
+    <div class="row">
+      <mat-form-field class="input-full" appearance="outline">
+        <input matInput size="sm" formControlName="apiEndPoint">
+        <mat-label>AI EndPoint <small>for on-prem Models</small></mat-label>
+      </mat-form-field>
     </div>
-    <div class="dds__form__field">
-      <input matInput type="password" size="sm" formControlName="openAIKey">
-        <mat-label visual-indicator="on">OpenAI API Key</mat-label>
+    <div class="row">
+      <mat-form-field class="input-full" appearance="outline">
+        <input matInput formControlName="openAIKey" [type]="hideApi ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hideApi = !hideApi">{{hideApi ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-label>OpenAI API Key</mat-label>
+      </mat-form-field>
     </div>
-    <div class="dds__form__field">
-      <input matInput size="sm" formControlName="modelName">
-        <mat-label visual-indicator="on">Model Name <small>gpt-4-turbo / gpt-4o / llama3</small></mat-label>
+    <div class="row">
+      <mat-form-field class="input-full" appearance="outline">
+        <input matInput size="sm" formControlName="modelName">
+        <mat-label>Model Name <small>gpt-4-turbo / gpt-4o / llama3</small></mat-label>
         <mat-error>Model is required</mat-error>
+      </mat-form-field>
     </div>
-
-  </fieldset>
-  <div class="dds__form__field">
-    <button mat-button size="mini" class="btn default" type="submit">Save</button>
-    <button mat-button size="mini" class="btn default" type="button" (click)="testSettings()">Test Settings</button>
-  </div>
+    <div class="row no-marging actions">
+      <button mat-button mat-flat-button type="submit">Save</button>
+      <button mat-button mat-flat-button type="button" (click)="testSettings()">Test Settings</button>
+    </div>
   </form>
-<!--  <dds-overlay [visible]="loaderVisible" aria-live="polite">-->
-<!--    <dds-loading-indicator [elevation]="true" size="md">Waiting for AI</dds-loading-indicator>-->
-<!--  </dds-overlay>-->
 </div>
 
 <!--<dds-modal size="md" #modal>-->

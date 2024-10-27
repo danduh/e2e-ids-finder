@@ -12,17 +12,19 @@ $theme: mat.define-theme((
     brand-family: 'Comic Sans',
     bold-weight: 900
   ),
-  //density: (
-  //  scale: -1
-  //)
 ));
 body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   margin: 0;
-  padding: 30px;
+  padding: 0;
   height: 100%;
-  //background: #101414;
+  width: 480px;
+  font-size: 16px;
+  background: #eeeeee;
   @include mat.all-component-themes($theme);
+  .container{
+    margin: 0 10px;
+  }
 }
 
 html {

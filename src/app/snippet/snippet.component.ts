@@ -1,13 +1,17 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as Prism from "prismjs";
 import {MatButton} from "@angular/material/button";
+import {MatIcon} from "@angular/material/icon";
+import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
   selector: "app-snippet",
   standalone: true,
-  imports: [
-    MatButton
-  ],
+    imports: [
+        MatButton,
+        MatIcon,
+        MatTooltip
+    ],
   templateUrl: "./snippet.component.html",
   styleUrl: "./snippet.component.scss",
 })

@@ -1,5 +1,9 @@
 <div class="actions">
-    <button mat-button size="mini" class="btn btn-secondary" (click)="copyToClipboard()">Copy to Clipboard</button>
-    <button mat-button size="mini" class="btn btn-secondary" (click)="saveToFile()">Save to File</button>
+    <mat-icon (click)="copyToClipboard()"
+              color="primary"
+              matTooltip="Copy to Clipboard">content_copy</mat-icon>
+    <mat-icon (click)="saveToFile()"
+              color="primary"
+              matTooltip="Download File">file_download</mat-icon>
 </div>
 <pre><code [innerHtml]="highlightedCode"></code></pre>

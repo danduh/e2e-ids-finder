@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 import {MatTab, MatTabContent, MatTabGroup, MatTabLink, MatTabNav, MatTabNavPanel} from "@angular/material/tabs";
 
@@ -24,12 +24,12 @@ export class AppComponent implements OnInit {
   title = "@danduh/e2e-test-helper";
   navLinks = [
     {link:"/allElements", label:"Use AI (beta)"},
-    {link:"/actions", label:"Actions"},
+    // {link:"/actions", label:"Actions"},
     {link:"/prompts", label:"Prompts"},
     {link:"/settings", label:"Settings"}
   ]
-  @ViewChild('tabsHeader') tabsHeader!: any//TabsHeaderComponent;
-  activeLink = '';
+
+  activeLink = this.navLinks[0].link;
 
   async getTabId(){
     return await chrome.tabs.query({currentWindow: true, active: true})
@@ -40,11 +40,6 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(){
     const tabId = await this.getTabId()
-
-    this.tabsHeader.handleHome = (event: any)=>{
-      debugger
-    }
-
 
     const resp = await chrome.tabs.sendMessage(tabId, {text: "isUiHandlerInjected"})
       .catch((err) => {

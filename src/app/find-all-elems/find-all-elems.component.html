@@ -2,13 +2,13 @@
   <div class="row spacer">
     <div class="col">
       <button mat-button mat-flat-button (click)="findAllElements()">
-        Scan
+        Scan Elements
       </button>
     </div>
     <div class="col">
-      <span *ngIf="allElementsArray"
-        >Found: {{ allElementsArray.length }} Elements</span
-      >
+      <span *ngIf="allElementsArray">
+        Found: {{ allElementsArray.length }} elements on the page
+      </span>
     </div>
   </div>
 
@@ -37,67 +37,69 @@
   </div>
 
   <form [formGroup]="requestForm" (ngSubmit)="sendRequest()">
-      <div class="row">
-        <mat-form-field class="input-full" appearance="outline">
-          <input
-            matInput
-            type="text"
-            formControlName="pageObjectName"
-            required
-          />
-          <mat-label>Give a name to PageObject</mat-label>
-        </mat-form-field>
-      </div>
-      <div class="row spacer">
-        <mat-form-field class="input-half" appearance="outline">
-          <mat-select 
-            placeholder="Select System Message"
-            formControlName="systemMessage"
+    <div class="row">
+      <mat-form-field class="input-full" appearance="outline">
+        <input
+          matInput
+          type="text"
+          formControlName="pageObjectName"
+          required
+        />
+        <mat-label>Give a name to PageObject</mat-label>
+      </mat-form-field>
+    </div>
+    <div class="row spacer">
+      <mat-form-field class="input-half" appearance="outline">
+        <mat-select
+          placeholder="Select System Message"
+          formControlName="systemMessage"
+        >
+          <mat-option
+            *ngFor="let message of systemMessages | async"
+            [value]="message.content"
+          >{{ message.title }}
+          </mat-option
           >
-            <mat-option
-              *ngFor="let message of systemMessages | async"
-              [value]="message.content"
-              >{{ message.title }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
+        </mat-select>
+      </mat-form-field>
 
-        <mat-form-field class="input-half" appearance="outline">
-          <mat-select
-            placeholder="Select User Prompt"
-            formControlName="userPrompt"
+      <mat-form-field class="input-half" appearance="outline">
+        <mat-select
+          placeholder="Select User Prompt"
+          formControlName="userPrompt"
+        >
+          <mat-option
+            *ngFor="let message of userPrompts | async"
+            [value]="message.content"
+          >{{ message.title }}
+          </mat-option
           >
-            <mat-option
-              *ngFor="let message of userPrompts | async"
-              [value]="message.content"
-              >{{ message.title }}</mat-option
-            >
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="row mt-1">
-        <div class="col">
-          <mat-form-field class="input-full" appearance="outline">
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="row mt-1">
+      <div class="col">
+        <mat-form-field class="input-full" appearance="outline">
             <textarea
               matInput
               rows="5"
               cols="50"
               formControlName="customPrompt"
             ></textarea>
-            <mat-label>More Details</mat-label>
-          </mat-form-field>
-        </div>
+          <mat-label>More Details</mat-label>
+        </mat-form-field>
       </div>
+    </div>
 
-      <div class="row mt-4">
-        <div class="col">
-          <button mat-button type="submit">Send Request</button>
-        </div>
+    <div class="row no-marging">
+      <div class="col">
+        <button mat-button mat-flat-button type="submit">Create Page Object</button>
       </div>
+    </div>
 
-      <div class="controller" *ngIf="!pageObject && modelAsked">
-        <h1>Waiting for response from AI</h1>
-      </div>
+    <div class="controller" *ngIf="!pageObject && modelAsked">
+      <h1>Waiting for response from AI</h1>
+    </div>
 
     <div class="row mt-4" *ngIf="pageObject">
       <div
@@ -108,9 +110,7 @@
       ></div>
     </div>
   </form>
-
-  <mat-progress-spinner
-    *ngIf="loaderVisible"
-    mode="indeterminate"
-  ></mat-progress-spinner>
+<mat-progress-bar *ngIf="loaderVisible" mode="indeterminate"></mat-progress-bar>
+<!--  <mat-progress-spinner color="primary" *ngIf="loaderVisible"-->
+<!--                        mode="indeterminate"></mat-progress-spinner>-->
 </div>
