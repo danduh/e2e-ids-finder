@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
   title = "@danduh/e2e-test-helper";
   navLinks = [
     {link:"/allElements", label:"Use AI (beta)"},
-    // {link:"/actions", label:"Actions"},
+    {link:"/develop", label:"Develop"},
     {link:"/prompts", label:"Prompts"},
     {link:"/settings", label:"Settings"}
   ]

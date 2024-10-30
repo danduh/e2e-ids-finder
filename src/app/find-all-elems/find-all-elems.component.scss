@@ -4,26 +4,30 @@
 
 .row {
   margin-top: 15px;
-  span{
+
+  span {
     line-height: 40px;
   }
-  &.no-marging{
+
+  &.no-marging {
     margin: 0;
   }
 }
 
 
-form{
-margin-top: 15px;
+form {
+  margin-top: 15px;
 }
 
-.spacer{
+.spacer {
   display: flex;
   justify-content: space-between;
 }
-.input-full{
+
+.input-full {
   width: 100%;
 }
-.input-half{
+
+.input-half {
   width: 45%;
 }

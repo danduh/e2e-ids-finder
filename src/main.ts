@@ -20,7 +20,7 @@ bootstrapApplication(AppComponent, {
       { path: "", redirectTo: "allElements", pathMatch: "full" },
       { path: "prompts", component: PromptsComponent },
       { path: "settings", component: SettingsComponent },
-      { path: "actions", component: ActionsComponent },
+      { path: "develop", component: ActionsComponent },
       { path: "allElements", component: FindAllElemsComponent },
     ]),
   ],

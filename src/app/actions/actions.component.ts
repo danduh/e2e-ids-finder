@@ -33,7 +33,7 @@ export class ActionsComponent implements OnInit {
         target: {
           tabId
         },
-        func: () => {
+        func: (): void => {
           // @ts-ignore
           showE2Areas();
         },
