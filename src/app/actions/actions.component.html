@@ -1,15 +1,15 @@
-<div class="dds__container dds__container--compact dds__mt-4">
-  <div class="dds__row dds__mt-4">
-    <div class="dds__col-1">
-      <dds-button size="sm" (click)="showElements()">Show</dds-button>
+<div class="container">
+  <div class="row spacer">
+    <div class="col">
+      <button mat-button mat-flat-button (click)="showElements()">Show</button>
     </div>
-    <div class="dds__col-1">
-      <small>Highlight elements {{attributeId}} attr.</small>
+    <div class="col">
+      <span>Highlight elements <code>{{ attributeId }}</code> attr.</span>
     </div>
-  </div>    
-  <div class="dds__row dds__mt-4">
-    <div class="dds__col-1">
-      <dds-button size="sm" (click)="hideElements()">Hide</dds-button>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button mat-button color="warn" mat-flat-button (click)="hideElements()">Hide</button>
     </div>
   </div>
 </div>

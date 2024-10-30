@@ -1,5 +1,11 @@
-.actions{
+.actions {
   display: flex;
   justify-content: end;
   flex-direction: row;
+}
+
+pre {
+  background: #fafafa;
+  padding: 9px;
+  overflow: auto;
 }

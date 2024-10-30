@@ -1,25 +1,28 @@
-dds-view-more-less {
-  width: 100%;
-}
-
-.action-raw {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  min-width: 100%;
-
-  .title {
-
-  }
-
-  .actions {
-
-  }
+form {
+  margin-top: 20px;
 }
 
 .textarea {
   textarea {
     padding: 5px 10px !important;
     font-size: 14px !important;
+  }
+}
+
+.input-full {
+  width: 100%;
+}
+
+.mat-expansion-panel-header-description {
+  justify-content: end;
+  align-items: center;
+}
+
+mat-expansion-panel-header {
+  &:hover{
+    background: #e0e2ec !important;
+    //mat-panel-title, mat-panel-description, mat-expansion-indicator {
+    //  color: #ffffff;
+    //}
   }
 }

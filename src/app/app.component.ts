@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import { RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
-import { DDSAngularModule } from "@dds/angular";
-import {TabsHeaderComponent} from "@dds/angular/lib/tabs/tabs-header/tabs-header.component";
+import {MatTab, MatTabContent, MatTabGroup, MatTabLink, MatTabNav, MatTabNavPanel} from "@angular/material/tabs";
 
 
 @Component({
@@ -12,13 +11,25 @@ import {TabsHeaderComponent} from "@dds/angular/lib/tabs/tabs-header/tabs-header
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
-    DDSAngularModule
+    MatTab,
+    MatTabGroup,
+    MatTabContent,
+    MatTabNav,
+    MatTabNavPanel,
+    MatTabLink,
   ],
   styleUrls: [ "./app.component.scss" ]
 })
 export class AppComponent implements OnInit {
   title = "@danduh/e2e-test-helper";
-  @ViewChild('tabsHeader') tabsHeader!: TabsHeaderComponent;
+  navLinks = [
+    {link:"/allElements", label:"Use AI (beta)"},
+    {link:"/develop", label:"Develop"},
+    {link:"/prompts", label:"Prompts"},
+    {link:"/settings", label:"Settings"}
+  ]
+
+  activeLink = this.navLinks[0].link;
 
   async getTabId(){
     return await chrome.tabs.query({currentWindow: true, active: true})
@@ -29,11 +40,6 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(){
     const tabId = await this.getTabId()
-
-    this.tabsHeader.handleHome = (event)=>{
-      debugger
-    }
-
 
     const resp = await chrome.tabs.sendMessage(tabId, {text: "isUiHandlerInjected"})
       .catch((err) => {

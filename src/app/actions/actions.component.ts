@@ -2,15 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { getTabId } from "../shared/base-chrome-class";
 
 import { CommonModule } from "@angular/common";
-import { DDSAngularModule } from "@dds/angular";
 import { ConfigurationService } from "../shared/config-store.service";
+import {MatButton} from "@angular/material/button";
 
 
 @Component({
   standalone: true,
   selector: "app-actions",
   templateUrl: "./actions.component.html",
-  imports: [ CommonModule, DDSAngularModule ],
+  imports: [CommonModule, MatButton],
   styleUrls: [ "./actions.component.scss" ],
   providers: [ ConfigurationService ]
 })
@@ -33,7 +33,7 @@ export class ActionsComponent implements OnInit {
         target: {
           tabId
         },
-        func: () => {
+        func: (): void => {
           // @ts-ignore
           showE2Areas();
         },

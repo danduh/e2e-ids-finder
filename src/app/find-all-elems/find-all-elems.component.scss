@@ -2,3 +2,32 @@
   width: 100%;
 }
 
+.row {
+  margin-top: 15px;
+
+  span {
+    line-height: 40px;
+  }
+
+  &.no-marging {
+    margin: 0;
+  }
+}
+
+
+form {
+  margin-top: 15px;
+}
+
+.spacer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-full {
+  width: 100%;
+}
+
+.input-half {
+  width: 45%;
+}

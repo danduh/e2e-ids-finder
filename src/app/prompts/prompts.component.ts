@@ -1,37 +1,24 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  AccordionModule,
-  CheckboxModule,
-  DDSAngularModule,
-  HelperModule,
-  IconModule,
-  InputModule,
-  LabelModule,
-  ViewMoreLessTargetDirective
-} from "@dds/angular";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AsyncPipe, CommonModule} from "@angular/common";
 import {PromptMessage, PromptsStoreService} from "../shared/prompts-store.service";
 import {RouterLink} from "@angular/router";
 import {PromptEvent, PromptsListComponent, PromptType} from "./prompts-list/prompts-list.component";
+import {MatTab, MatTabGroup, MatTabLink, MatTabNav} from "@angular/material/tabs";
 
 
 @Component({
   imports: [
-    CheckboxModule,
-    HelperModule,
-    InputModule,
-    LabelModule,
     CommonModule,
-    FormsModule, ReactiveFormsModule, AsyncPipe, DDSAngularModule, IconModule,
-    RouterLink, PromptsListComponent
+    FormsModule, ReactiveFormsModule, AsyncPipe,
+    RouterLink, PromptsListComponent, MatTabGroup, MatTabNav, MatTabLink, MatTab
   ],
   providers: [PromptsStoreService],
   selector: 'app-prompts',
   standalone: true,
   styleUrl: './prompts.component.scss',
   templateUrl: './prompts.component.html',
-  viewProviders: [ViewMoreLessTargetDirective]
+  viewProviders: []
 })
 export class PromptsComponent implements OnInit {
   systemMessages!: Promise<PromptMessage[]>;

@@ -1,6 +1,20 @@
 .controller {
   margin: 20px;
 }
-.dds__col-1{
+
+.spacer {
   display: flex;
+  justify-content: space-between;
+}
+
+.row {
+  margin-top: 15px;
+
+  span {
+    line-height: 40px;
+  }
+
+  &.no-marging {
+    margin: 0;
+  }
 }
